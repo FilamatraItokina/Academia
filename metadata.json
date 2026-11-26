@@ -1,0 +1,6 @@
+{
+  "name": "Académia — Gestion Scolaire",
+  "description": "Système modulaire de gestion scolaire pour collèges et lycées : authentification RBAC, scolarité, pédagogie, vie scolaire et finances.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
