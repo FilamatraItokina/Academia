@@ -8,7 +8,9 @@ import { authRouter } from './modules/auth/auth.routes.ts';
 import { classesRouter } from './modules/classes/class.routes.ts';
 import { docsRouter } from './modules/docs/openapi.ts';
 import { eventsRouter } from './modules/events/event.routes.ts';
+import { gradesRouter } from './modules/grades/grade.routes.ts';
 import { guardiansRouter } from './modules/guardians/guardian.routes.ts';
+import { reportCardsRouter } from './modules/report-cards/report-card.routes.ts';
 import { settingsRouter } from './modules/settings/settings.routes.ts';
 import { studentsRouter } from './modules/students/student.routes.ts';
 import { subjectsRouter } from './modules/subjects/subject.routes.ts';
@@ -50,6 +52,8 @@ export function createApiApp() {
   app.use('/api/v1/attendance', attendanceRouter);
   app.use('/api/v1/events', eventsRouter);
   app.use('/api/v1/subjects', subjectsRouter);
+  app.use('/api/v1/grades', gradesRouter);
+  app.use('/api/v1/report-cards', reportCardsRouter);
 
   app.use('/api/v1', (_req, res) => {
     res.status(404).json({

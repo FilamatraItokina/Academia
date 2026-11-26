@@ -6,14 +6,17 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider, useAuth } from './client/context/AuthContext.tsx';
+import { ThemeProvider } from './client/context/ThemeContext.tsx';
 import { ToastProvider } from './client/context/ToastContext.tsx';
 import { AcademicYearsPage } from './client/features/academic-years/AcademicYearsPage.tsx';
 import { AuditLogsPage } from './client/features/audit/AuditLogsPage.tsx';
 import { LoginPage } from './client/features/auth/LoginPage.tsx';
 import { ClassesPage } from './client/features/classes/ClassesPage.tsx';
 import { DashboardPage } from './client/features/dashboard/DashboardPage.tsx';
+import { GradesPage } from './client/features/grades/GradesPage.tsx';
 import { GuardiansPage } from './client/features/guardians/GuardiansPage.tsx';
 import { ProfilePage } from './client/features/profile/ProfilePage.tsx';
+import { ReportCardsPage } from './client/features/report-cards/ReportCardsPage.tsx';
 import { RolesPage } from './client/features/roles/RolesPage.tsx';
 import { SettingsPage } from './client/features/settings/SettingsPage.tsx';
 import { StudentsPage } from './client/features/students/StudentsPage.tsx';
@@ -41,7 +44,7 @@ function ProtectedRoute({
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50 text-sm text-slate-600">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 text-sm text-slate-600 dark:text-slate-300">
         Chargement de votre espace scolaire...
       </div>
     );
@@ -118,6 +121,22 @@ function AppRoutes() {
         }
       />
       <Route
+        path="/grades"
+        element={
+          <ProtectedRoute permission="grades:read">
+            <GradesPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/report-cards"
+        element={
+          <ProtectedRoute permission="report_cards:read">
+            <ReportCardsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
         path="/users"
         element={
           <ProtectedRoute permission="users:read">
@@ -164,14 +183,16 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ToastProvider>
-        <AuthProvider>
-          <BrowserRouter>
-            <AppRoutes />
-          </BrowserRouter>
-        </AuthProvider>
-      </ToastProvider>
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ToastProvider>
+          <AuthProvider>
+            <BrowserRouter>
+              <AppRoutes />
+            </BrowserRouter>
+          </AuthProvider>
+        </ToastProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }

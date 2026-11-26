@@ -257,15 +257,15 @@ export function GuardiansPage() {
     >
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
             Parents & Responsables légaux
           </h1>
-          <p className="mt-1 text-sm text-slate-600">
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
             Centralisez les coordonnées des familles, contacts d’urgence, autorisations parentales et rattachements multi-enfants.
           </p>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-lg p-4">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg p-4">
           <div className="relative">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
@@ -276,7 +276,7 @@ export function GuardiansPage() {
                 setPage(1);
               }}
               placeholder="Rechercher par nom, prénom, téléphone ou e-mail..."
-              className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+              className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white dark:focus:bg-slate-900"
             />
           </div>
         </div>
@@ -305,18 +305,18 @@ export function GuardiansPage() {
             }
           />
         ) : (
-          <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-slate-200 bg-slate-50/70 text-xs font-medium text-slate-600">
+                  <tr className="border-b border-slate-200 dark:border-slate-700/80 bg-slate-50/70 dark:bg-slate-800/50 text-xs font-medium text-slate-600 dark:text-slate-400">
                     <th className="py-3 px-4">Responsable légal</th>
                     <th className="py-3 px-4">Coordonnées</th>
                     <th className="py-3 px-4">Élèves rattachés</th>
                     <th className="py-3 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 text-sm">
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
                   {guardiansQuery.data?.items.map((g) => (
                     <tr
                       key={g.id}
@@ -324,23 +324,23 @@ export function GuardiansPage() {
                         setShowLinkForm(false);
                         setDrawerGuardianId(g.id);
                       }}
-                      className="hover:bg-slate-50/80 cursor-pointer transition-colors"
+                      className="hover:bg-slate-50/80 dark:hover:bg-slate-800/60 cursor-pointer transition-colors"
                     >
                       <td className="py-3 px-4">
-                        <p className="font-semibold text-slate-900">
+                        <p className="font-semibold text-slate-900 dark:text-slate-100">
                           {g.lastName} {g.firstName}
                         </p>
-                        <p className="text-xs text-slate-500">
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
                           {g.profession || 'Responsable légal'}
                         </p>
                       </td>
                       <td className="py-3 px-4 text-xs">
-                        <p className="font-mono text-slate-900 tabular-nums">{g.phone}</p>
-                        <p className="text-slate-500 truncate max-w-xs">
+                        <p className="font-mono text-slate-900 dark:text-slate-100 tabular-nums">{g.phone}</p>
+                        <p className="text-slate-500 dark:text-slate-400 truncate max-w-xs">
                           {g.email || g.secondaryPhone || '—'}
                         </p>
                       </td>
-                      <td className="py-3 px-4 text-xs text-slate-700">
+                      <td className="py-3 px-4 text-xs text-slate-700 dark:text-slate-300">
                         {g.students.length === 0 ? (
                           <span className="text-slate-400">Aucun élève lié</span>
                         ) : (
@@ -367,7 +367,7 @@ export function GuardiansPage() {
                               setShowLinkForm(false);
                               setDrawerGuardianId(g.id);
                             }}
-                            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded cursor-pointer"
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded cursor-pointer"
                           >
                             <FolderOpen className="w-3.5 h-3.5" />
                             Enfants ({g.students.length})
@@ -376,7 +376,7 @@ export function GuardiansPage() {
                             <button
                               type="button"
                               onClick={() => openEdit(g)}
-                              className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded cursor-pointer"
+                              className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded cursor-pointer"
                             >
                               <Edit3 className="w-3.5 h-3.5" />
                               Modifier
@@ -391,7 +391,7 @@ export function GuardiansPage() {
             </div>
 
             {guardiansQuery.data && guardiansQuery.data.pagination.totalPages > 1 && (
-              <div className="px-4 py-3 border-t border-slate-200 bg-slate-50/50 flex items-center justify-between text-xs text-slate-600">
+              <div className="px-4 py-3 border-t border-slate-200 dark:border-slate-700/80 bg-slate-50/50 dark:bg-slate-800/40 flex items-center justify-between text-xs text-slate-600 dark:text-slate-400">
                 <span className="font-mono tabular-nums">
                   {guardiansQuery.data.pagination.total} responsable(s) · Page{' '}
                   {guardiansQuery.data.pagination.page} /{' '}
@@ -402,7 +402,7 @@ export function GuardiansPage() {
                     type="button"
                     disabled={page <= 1}
                     onClick={() => setPage((p) => Math.max(1, p - 1))}
-                    className="px-3 py-1.5 bg-white border border-slate-200 rounded hover:bg-slate-50 disabled:opacity-50 cursor-pointer"
+                    className="px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded hover:bg-slate-50 dark:hover:bg-slate-800/70 disabled:opacity-50 cursor-pointer"
                   >
                     Précédent
                   </button>
@@ -410,7 +410,7 @@ export function GuardiansPage() {
                     type="button"
                     disabled={page >= guardiansQuery.data.pagination.totalPages}
                     onClick={() => setPage((p) => p + 1)}
-                    className="px-3 py-1.5 bg-white border border-slate-200 rounded hover:bg-slate-50 disabled:opacity-50 cursor-pointer"
+                    className="px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded hover:bg-slate-50 dark:hover:bg-slate-800/70 disabled:opacity-50 cursor-pointer"
                   >
                     Suivant
                   </button>
@@ -447,7 +447,7 @@ export function GuardiansPage() {
             <button
               type="button"
               onClick={() => openEdit(drawerGuardianQuery.data!)}
-              className="px-4 py-2 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded-md cursor-pointer"
+              className="px-4 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded-md cursor-pointer"
             >
               Modifier les coordonnées
             </button>
@@ -458,34 +458,34 @@ export function GuardiansPage() {
           <TableSkeleton rows={3} cols={2} />
         ) : drawerGuardianQuery.data ? (
           <div className="space-y-6">
-            <div className="grid grid-cols-2 gap-4 text-xs pb-5 border-b border-slate-200">
+            <div className="grid grid-cols-2 gap-4 text-xs pb-5 border-b border-slate-200 dark:border-slate-700/80">
               <div>
-                <span className="text-slate-500 block">Téléphone principal</span>
-                <span className="font-mono font-medium text-slate-900">
+                <span className="text-slate-500 dark:text-slate-400 block">Téléphone principal</span>
+                <span className="font-mono font-medium text-slate-900 dark:text-slate-100">
                   {drawerGuardianQuery.data.phone}
                 </span>
               </div>
               <div>
-                <span className="text-slate-500 block">Téléphone secondaire</span>
-                <span className="font-mono font-medium text-slate-900">
+                <span className="text-slate-500 dark:text-slate-400 block">Téléphone secondaire</span>
+                <span className="font-mono font-medium text-slate-900 dark:text-slate-100">
                   {drawerGuardianQuery.data.secondaryPhone || '—'}
                 </span>
               </div>
               <div>
-                <span className="text-slate-500 block">E-mail</span>
-                <span className="font-medium text-slate-900">
+                <span className="text-slate-500 dark:text-slate-400 block">E-mail</span>
+                <span className="font-medium text-slate-900 dark:text-slate-100">
                   {drawerGuardianQuery.data.email || '—'}
                 </span>
               </div>
               <div>
-                <span className="text-slate-500 block">Profession</span>
-                <span className="font-medium text-slate-900">
+                <span className="text-slate-500 dark:text-slate-400 block">Profession</span>
+                <span className="font-medium text-slate-900 dark:text-slate-100">
                   {drawerGuardianQuery.data.profession || '—'}
                 </span>
               </div>
               <div className="col-span-2">
-                <span className="text-slate-500 block">Adresse</span>
-                <span className="font-medium text-slate-900">
+                <span className="text-slate-500 dark:text-slate-400 block">Adresse</span>
+                <span className="font-medium text-slate-900 dark:text-slate-100">
                   {drawerGuardianQuery.data.address || '—'}
                 </span>
               </div>
@@ -493,7 +493,7 @@ export function GuardiansPage() {
 
             <div className="space-y-3">
               <div className="flex items-center justify-between gap-2">
-                <h3 className="text-sm font-semibold text-slate-900">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                   Élèves rattachés ({drawerGuardianQuery.data.students.length})
                 </h3>
                 {canWrite && canReadStudents && (
@@ -509,7 +509,7 @@ export function GuardiansPage() {
                       });
                       setShowLinkForm(true);
                     }}
-                    className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-800 cursor-pointer"
+                    className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 cursor-pointer"
                   >
                     <Link2 className="w-3.5 h-3.5" />
                     Associer un élève
@@ -520,16 +520,16 @@ export function GuardiansPage() {
               {showLinkForm && (
                 <form
                   onSubmit={linkForm.handleSubmit((vals) => linkStudentMutation.mutate(vals))}
-                  className="p-4 bg-slate-50 border border-slate-200 rounded-md space-y-3"
+                  className="p-4 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-md space-y-3"
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                         Élève
                       </label>
                       <select
                         {...linkForm.register('studentId', { valueAsNumber: true })}
-                        className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded"
+                        className="w-full px-2.5 py-1.5 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded"
                       >
                         <option value={0}>Choisir un élève...</option>
                         {studentsLookupQuery.data?.items.map((st) => (
@@ -540,12 +540,12 @@ export function GuardiansPage() {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                         Lien de parenté
                       </label>
                       <select
                         {...linkForm.register('relationship')}
-                        className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded"
+                        className="w-full px-2.5 py-1.5 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded"
                       >
                         <option value="MOTHER">Mère</option>
                         <option value="FATHER">Père</option>
@@ -554,7 +554,7 @@ export function GuardiansPage() {
                       </select>
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-4 text-xs text-slate-700">
+                  <div className="flex flex-wrap gap-4 text-xs text-slate-700 dark:text-slate-300">
                     <label className="inline-flex items-center gap-1.5 cursor-pointer">
                       <input type="checkbox" {...linkForm.register('isPrimaryContact')} />
                       <span>Contact principal</span>
@@ -572,7 +572,7 @@ export function GuardiansPage() {
                     <button
                       type="button"
                       onClick={() => setShowLinkForm(false)}
-                      className="px-3 py-1.5 text-xs text-slate-600 hover:text-slate-900 cursor-pointer"
+                      className="px-3 py-1.5 text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 cursor-pointer"
                     >
                       Annuler
                     </button>
@@ -588,24 +588,24 @@ export function GuardiansPage() {
               )}
 
               {drawerGuardianQuery.data.students.length === 0 ? (
-                <p className="text-xs text-slate-500 py-4 border border-dashed border-slate-200 rounded text-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400 py-4 border border-dashed border-slate-200 dark:border-slate-700/80 rounded text-center">
                   Aucun élève rattaché pour le moment.
                 </p>
               ) : (
-                <div className="divide-y divide-slate-100 border border-slate-200 rounded-md">
+                <div className="divide-y divide-slate-100 dark:divide-slate-800 border border-slate-200 dark:border-slate-700/80 rounded-md">
                   {drawerGuardianQuery.data.students.map((st) => (
                     <div
                       key={st.studentId}
                       className="p-3 flex items-center justify-between gap-3 text-xs"
                     >
                       <div className="min-w-0">
-                        <p className="font-semibold text-slate-900">
+                        <p className="font-semibold text-slate-900 dark:text-slate-100">
                           {st.lastName} {st.firstName}{' '}
-                          <span className="font-mono font-normal text-slate-500">
+                          <span className="font-mono font-normal text-slate-500 dark:text-slate-400">
                             ({st.matricule})
                           </span>
                         </p>
-                        <p className="text-slate-600 mt-0.5">
+                        <p className="text-slate-600 dark:text-slate-400 mt-0.5">
                           {RELATIONSHIP_LABELS[st.relationship]} ·{' '}
                           {st.currentClassName ?? 'Non affecté'}
                           {st.isPrimaryContact ? ' · Contact principal' : ''}
@@ -616,7 +616,7 @@ export function GuardiansPage() {
                           type="button"
                           disabled={unlinkStudentMutation.isPending}
                           onClick={() => unlinkStudentMutation.mutate(st.studentId)}
-                          className="inline-flex items-center gap-1 px-2 py-1 text-xs text-red-700 hover:bg-red-50 rounded cursor-pointer shrink-0"
+                          className="inline-flex items-center gap-1 px-2 py-1 text-xs text-red-700 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50 rounded cursor-pointer shrink-0"
                         >
                           <Unlink className="w-3.5 h-3.5" />
                           Dissocier
@@ -633,10 +633,10 @@ export function GuardiansPage() {
 
       {/* Modal Parent */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
-          <div className="w-full max-w-xl bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-[90vh] flex flex-col">
-            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between shrink-0">
-              <h2 className="text-base font-semibold text-slate-900">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 dark:bg-slate-950/75 p-4">
+          <div className="w-full max-w-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg shadow-lg overflow-hidden max-h-[90vh] flex flex-col">
+            <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700/80 flex items-center justify-between shrink-0">
+              <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
                 {editingGuardian
                   ? `Modifier ${editingGuardian.firstName} ${editingGuardian.lastName}`
                   : 'Nouveau responsable légal'}
@@ -644,7 +644,7 @@ export function GuardiansPage() {
               <button
                 type="button"
                 onClick={() => setModalOpen(false)}
-                className="text-slate-400 hover:text-slate-700 p-1 rounded cursor-pointer"
+                className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1 rounded cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -656,27 +656,27 @@ export function GuardiansPage() {
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">Prénom *</label>
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Prénom *</label>
                   <input
                     type="text"
                     {...form.register('firstName')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {form.formState.errors.firstName && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {form.formState.errors.firstName.message}
                     </p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">Nom *</label>
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Nom *</label>
                   <input
                     type="text"
                     {...form.register('lastName')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {form.formState.errors.lastName && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {form.formState.errors.lastName.message}
                     </p>
                   )}
@@ -685,71 +685,71 @@ export function GuardiansPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Téléphone principal *
                   </label>
                   <input
                     type="tel"
                     {...form.register('phone')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {form.formState.errors.phone && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {form.formState.errors.phone.message}
                     </p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Téléphone secondaire
                   </label>
                   <input
                     type="tel"
                     {...form.register('secondaryPhone')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">E-mail</label>
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">E-mail</label>
                   <input
                     type="email"
                     {...form.register('email')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Profession
                   </label>
                   <input
                     type="text"
                     {...form.register('profession')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">Adresse</label>
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Adresse</label>
                 <input
                   type="text"
                   {...form.register('address')}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                  className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                 />
               </div>
 
               {!editingGuardian && canReadStudents && (
-                <div className="p-4 bg-slate-50 border border-slate-200 rounded-md space-y-3">
-                  <p className="text-xs font-semibold text-slate-900">
+                <div className="p-4 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-md space-y-3">
+                  <p className="text-xs font-semibold text-slate-900 dark:text-slate-100">
                     Associer directement un élève (optionnel)
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <select
                       {...form.register('initialStudentId', { valueAsNumber: true })}
-                      className="px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                      className="px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
                     >
                       <option value={0}>Aucun pour l’instant</option>
                       {studentsLookupQuery.data?.items.map((st) => (
@@ -760,7 +760,7 @@ export function GuardiansPage() {
                     </select>
                     <select
                       {...form.register('initialRelationship')}
-                      className="px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                      className="px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
                     >
                       <option value="MOTHER">Mère</option>
                       <option value="FATHER">Père</option>
@@ -771,11 +771,11 @@ export function GuardiansPage() {
                 </div>
               )}
 
-              <div className="pt-4 border-t border-slate-100 flex justify-end gap-3">
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 text-sm font-medium text-slate-700 border border-slate-200 rounded-md hover:bg-slate-50 cursor-pointer"
+                  className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/80 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800/70 cursor-pointer"
                 >
                   Annuler
                 </button>

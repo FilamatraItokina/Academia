@@ -426,26 +426,23 @@ export function SubjectsPage() {
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-medium text-indigo-700">
-              Phase 2 · Pédagogie — Module 7
-            </p>
-            <h1 className="mt-1 text-2xl font-bold text-slate-900">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
               Matières, Coefficients & Programmes
             </h1>
-            <p className="mt-1 text-sm text-slate-600">
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
               Structurez le référentiel disciplinaire de l’établissement, fixez les coefficients par classe et affectez les enseignants responsables.
             </p>
           </div>
 
-          <div className="flex items-center gap-1 p-0.5 bg-slate-200/70 rounded-md self-start md:self-auto">
+          <div className="flex items-center gap-1 p-0.5 bg-slate-200/70 dark:bg-slate-800 rounded-md self-start md:self-auto">
             {canReadClasses && (
               <button
                 type="button"
                 onClick={() => setActiveTab('curriculum')}
                 className={`px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap cursor-pointer ${
                   activeTab === 'curriculum'
-                    ? 'bg-white text-slate-900 shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-xs'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
                 }`}
               >
                 Programme par classe
@@ -456,8 +453,8 @@ export function SubjectsPage() {
               onClick={() => setActiveTab('catalog')}
               className={`px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap cursor-pointer ${
                 activeTab === 'catalog'
-                  ? 'bg-white text-slate-900 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
               }`}
             >
               Référentiel des matières ({subjectsQuery.data?.items.length ?? 0})
@@ -469,17 +466,17 @@ export function SubjectsPage() {
         {activeTab === 'curriculum' && canReadClasses && (
           <div className="space-y-6">
             {/* Barre de sélection année / classe */}
-            <div className="bg-white border border-slate-200 rounded-lg p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg p-4 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-3">
                 {canReadYears && years.length > 0 && (
                   <div>
-                    <label className="block text-[11px] font-medium text-slate-500 mb-1">
+                    <label className="block text-[11px] font-medium text-slate-500 dark:text-slate-400 mb-1">
                       Année scolaire
                     </label>
                     <select
                       value={selectedYearId}
                       onChange={(e) => setSelectedYearId(Number(e.target.value))}
-                      className="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-md text-slate-800"
+                      className="px-3 py-1.5 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md text-slate-800 dark:text-slate-200"
                     >
                       {years.map((y) => (
                         <option key={y.id} value={y.id}>
@@ -491,14 +488,14 @@ export function SubjectsPage() {
                 )}
 
                 <div>
-                  <label className="block text-[11px] font-medium text-slate-500 mb-1">
+                  <label className="block text-[11px] font-medium text-slate-500 dark:text-slate-400 mb-1">
                     Classe sélectionnée
                   </label>
                   <select
                     value={selectedClassId}
                     onChange={(e) => setSelectedClassId(Number(e.target.value))}
                     disabled={filteredClasses.length === 0}
-                    className="px-3 py-1.5 text-sm bg-white border border-slate-200 rounded-md text-slate-900 font-medium min-w-[210px]"
+                    className="px-3 py-1.5 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md text-slate-900 dark:text-slate-100 font-medium min-w-[210px]"
                   >
                     {filteredClasses.length === 0 ? (
                       <option value={0}>Aucune classe disponible</option>
@@ -513,7 +510,7 @@ export function SubjectsPage() {
                 </div>
 
                 {curriculum && (
-                  <div className="pt-4 text-xs text-slate-500">
+                  <div className="pt-4 text-xs text-slate-500 dark:text-slate-400">
                     {curriculum.classInfo.levelName}
                     {curriculum.classInfo.seriesName ? ` · Série ${curriculum.classInfo.seriesName}` : ''}
                     {' · '}
@@ -534,7 +531,7 @@ export function SubjectsPage() {
                         setCopyIncludeTeachers(true);
                         setCopyModalOpen(true);
                       }}
-                      className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded-md whitespace-nowrap cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded-md whitespace-nowrap cursor-pointer"
                     >
                       <Copy className="w-3.5 h-3.5" />
                       Copier depuis une classe
@@ -558,42 +555,42 @@ export function SubjectsPage() {
 
             {/* Synthèse du programme */}
             {selectedClassId > 0 && (
-              <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
-                <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-slate-200 border-b border-slate-200 bg-slate-50/40">
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg overflow-hidden">
+                <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-slate-200 dark:divide-slate-800 border-b border-slate-200 dark:border-slate-700/80 bg-slate-50/40 dark:bg-slate-800/30">
                   <div className="px-6 py-4">
-                    <p className="text-xs font-medium text-slate-500">Matières au programme</p>
-                    <p className="mt-1 text-2xl font-bold text-slate-900 font-mono tabular-nums">
+                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Matières au programme</p>
+                    <p className="mt-1 text-2xl font-bold text-slate-900 dark:text-slate-100 font-mono tabular-nums">
                       {curriculumQuery.isLoading ? '—' : curriculum?.summary.subjectCount ?? 0}
                     </p>
-                    <p className="mt-0.5 text-xs text-slate-500 font-mono tabular-nums">
+                    <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400 font-mono tabular-nums">
                       {curriculum?.summary.mandatoryCount ?? 0} oblig. · {curriculum?.summary.optionalCount ?? 0} opt.
                     </p>
                   </div>
 
                   <div className="px-6 py-4">
-                    <p className="text-xs font-medium text-slate-500">Somme des coefficients</p>
-                    <p className="mt-1 text-2xl font-bold text-indigo-700 font-mono tabular-nums">
+                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Somme des coefficients</p>
+                    <p className="mt-1 text-2xl font-bold text-indigo-700 dark:text-indigo-300 font-mono tabular-nums">
                       {curriculumQuery.isLoading ? '—' : curriculum?.summary.totalCoefficient ?? 0}
                     </p>
-                    <p className="mt-0.5 text-xs text-slate-500">Base de calcul des moyennes</p>
+                    <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">Base de calcul des moyennes</p>
                   </div>
 
                   <div className="px-6 py-4">
-                    <p className="text-xs font-medium text-slate-500">Volume horaire hebdo</p>
-                    <p className="mt-1 text-2xl font-bold text-slate-900 font-mono tabular-nums">
+                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Volume horaire hebdo</p>
+                    <p className="mt-1 text-2xl font-bold text-slate-900 dark:text-slate-100 font-mono tabular-nums">
                       {curriculumQuery.isLoading ? '—' : `${curriculum?.summary.totalWeeklyHours ?? 0} h`}
                     </p>
-                    <p className="mt-0.5 text-xs text-slate-500">Heures d’enseignement / sem.</p>
+                    <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">Heures d’enseignement / sem.</p>
                   </div>
 
                   <div className="px-6 py-4">
-                    <p className="text-xs font-medium text-slate-500">Affectation enseignants</p>
-                    <p className="mt-1 text-2xl font-bold text-slate-900 font-mono tabular-nums">
+                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Affectation enseignants</p>
+                    <p className="mt-1 text-2xl font-bold text-slate-900 dark:text-slate-100 font-mono tabular-nums">
                       {curriculumQuery.isLoading
                         ? '—'
                         : `${curriculum?.summary.assignedTeachersCount ?? 0} / ${curriculum?.summary.subjectCount ?? 0}`}
                     </p>
-                    <p className="mt-0.5 text-xs text-slate-500">
+                    <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
                       {(curriculum?.summary.unassignedTeachersCount ?? 0) > 0
                         ? `${curriculum?.summary.unassignedTeachersCount} matière(s) sans professeur`
                         : 'Couverture complète'}
@@ -615,10 +612,10 @@ export function SubjectsPage() {
                 ) : !curriculum || curriculum.items.length === 0 ? (
                   <div className="p-8 text-center">
                     <BookOpen className="w-7 h-7 text-slate-400 mx-auto" />
-                    <h3 className="mt-2.5 text-sm font-semibold text-slate-900">
+                    <h3 className="mt-2.5 text-sm font-semibold text-slate-900 dark:text-slate-100">
                       Aucune matière configurée pour {curriculum?.classInfo.name ?? 'cette classe'}
                     </h3>
-                    <p className="mt-1 text-xs text-slate-500 max-w-md mx-auto">
+                    <p className="mt-1 text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
                       Associez les matières du référentiel avec leur coefficient, leur volume horaire et l’enseignant titulaire.
                     </p>
                     {canWrite && !isClosedYear && (
@@ -648,7 +645,7 @@ export function SubjectsPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                       <thead>
-                        <tr className="border-b border-slate-200 bg-slate-50/70 text-xs font-medium text-slate-600">
+                        <tr className="border-b border-slate-200 dark:border-slate-700/80 bg-slate-50/70 dark:bg-slate-800/50 text-xs font-medium text-slate-600 dark:text-slate-400">
                           <th className="py-3 px-6">Matière</th>
                           <th className="py-3 px-4">Pôle</th>
                           <th className="py-3 px-4">Coefficient</th>
@@ -660,39 +657,39 @@ export function SubjectsPage() {
                           )}
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100 text-sm">
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
                         {curriculum.items.map((item) => (
-                          <tr key={item.id} className="hover:bg-slate-50/60">
+                          <tr key={item.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/50">
                             <td className="py-3.5 px-6">
                               <div className="flex items-center gap-2.5">
-                                <span className="font-mono text-xs font-semibold text-indigo-700">
+                                <span className="font-mono text-xs font-semibold text-indigo-700 dark:text-indigo-300">
                                   {item.subjectCode}
                                 </span>
-                                <span className="font-medium text-slate-900">
+                                <span className="font-medium text-slate-900 dark:text-slate-100">
                                   {item.subjectName}
                                 </span>
                               </div>
                             </td>
-                            <td className="py-3.5 px-4 text-xs text-slate-600">
+                            <td className="py-3.5 px-4 text-xs text-slate-600 dark:text-slate-400">
                               {item.subjectDepartment}
                             </td>
-                            <td className="py-3.5 px-4 font-mono font-semibold text-slate-900 tabular-nums">
+                            <td className="py-3.5 px-4 font-mono font-semibold text-slate-900 dark:text-slate-100 tabular-nums">
                               {item.coefficient}
                             </td>
-                            <td className="py-3.5 px-4 font-mono text-xs text-slate-700 tabular-nums">
+                            <td className="py-3.5 px-4 font-mono text-xs text-slate-700 dark:text-slate-300 tabular-nums">
                               {item.weeklyHours} h
                             </td>
                             <td className="py-3.5 px-4 text-xs">
                               {item.teacherFullName ? (
-                                <div className="flex items-center gap-1.5 text-slate-900">
-                                  <UserCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                                <div className="flex items-center gap-1.5 text-slate-900 dark:text-slate-100">
+                                  <UserCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                                   <span className="font-medium">{item.teacherFullName}</span>
                                   <span className="text-slate-400 font-mono">
                                     · {item.teacherEmployeeCode}
                                   </span>
                                 </div>
                               ) : (
-                                <span className="text-amber-700 font-medium">
+                                <span className="text-amber-700 dark:text-amber-400 font-medium">
                                   Non affecté
                                 </span>
                               )}
@@ -701,8 +698,8 @@ export function SubjectsPage() {
                               <span
                                 className={
                                   item.isOptional
-                                    ? 'text-slate-500 font-medium'
-                                    : 'text-slate-800 font-medium'
+                                    ? 'text-slate-500 dark:text-slate-400 font-medium'
+                                    : 'text-slate-800 dark:text-slate-200 font-medium'
                                 }
                               >
                                 {item.isOptional ? 'Optionnelle' : 'Obligatoire'}
@@ -718,7 +715,7 @@ export function SubjectsPage() {
                                       setAssignModalOpen(true);
                                     }}
                                     aria-label={`Modifier ${item.subjectName}`}
-                                    className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded cursor-pointer"
+                                    className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 rounded cursor-pointer"
                                   >
                                     <Edit3 className="w-3.5 h-3.5" />
                                   </button>
@@ -726,7 +723,7 @@ export function SubjectsPage() {
                                     type="button"
                                     onClick={() => setRemoveTarget(item)}
                                     aria-label={`Retirer ${item.subjectName}`}
-                                    className="p-1.5 text-slate-500 hover:text-red-700 hover:bg-red-50 rounded cursor-pointer"
+                                    className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950/50 rounded cursor-pointer"
                                   >
                                     <Trash2 className="w-3.5 h-3.5" />
                                   </button>
@@ -754,7 +751,7 @@ export function SubjectsPage() {
         {/* ONGLET 2 : RÉFÉRENTIEL DES MATIÈRES */}
         {activeTab === 'catalog' && (
           <div className="space-y-4">
-            <div className="bg-white border border-slate-200 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="relative flex-1 max-w-md">
                 <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
@@ -762,7 +759,7 @@ export function SubjectsPage() {
                   value={catalogSearch}
                   onChange={(e) => setCatalogSearch(e.target.value)}
                   placeholder="Rechercher par code (MATH) ou intitulé..."
-                  className="w-full pl-9 pr-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="w-full pl-9 pr-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
                 />
               </div>
 
@@ -770,7 +767,7 @@ export function SubjectsPage() {
                 aria-label="Filtrer par pôle disciplinaire"
                 value={departmentFilter}
                 onChange={(e) => setDepartmentFilter(e.target.value)}
-                className="px-3 py-2 text-sm bg-white border border-slate-200 rounded-md text-slate-700"
+                className="px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md text-slate-700 dark:text-slate-300"
               >
                 <option value="">Tous les pôles</option>
                 {DEPARTMENTS.map((dept) => (
@@ -809,11 +806,11 @@ export function SubjectsPage() {
                 }
               />
             ) : (
-              <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="border-b border-slate-200 bg-slate-50/70 text-xs font-medium text-slate-600">
+                      <tr className="border-b border-slate-200 dark:border-slate-700/80 bg-slate-50/70 dark:bg-slate-800/50 text-xs font-medium text-slate-600 dark:text-slate-400">
                         <th className="py-3 px-6">Code</th>
                         <th className="py-3 px-4">Intitulé</th>
                         <th className="py-3 px-4">Pôle disciplinaire</th>
@@ -823,27 +820,27 @@ export function SubjectsPage() {
                         {canWrite && <th className="py-3 px-6 text-right">Action</th>}
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-100 text-sm">
+                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
                       {subjectsQuery.data?.items.map((sub) => (
-                        <tr key={sub.id} className="hover:bg-slate-50/60">
-                          <td className="py-3.5 px-6 font-mono text-xs font-semibold text-indigo-700">
+                        <tr key={sub.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/50">
+                          <td className="py-3.5 px-6 font-mono text-xs font-semibold text-indigo-700 dark:text-indigo-300">
                             {sub.code}
                           </td>
                           <td className="py-3.5 px-4">
-                            <p className="font-medium text-slate-900">{sub.name}</p>
+                            <p className="font-medium text-slate-900 dark:text-slate-100">{sub.name}</p>
                             {sub.description && (
-                              <p className="text-xs text-slate-500 truncate max-w-xs">
+                              <p className="text-xs text-slate-500 dark:text-slate-400 truncate max-w-xs">
                                 {sub.description}
                               </p>
                             )}
                           </td>
-                          <td className="py-3.5 px-4 text-xs text-slate-700">
+                          <td className="py-3.5 px-4 text-xs text-slate-700 dark:text-slate-300">
                             {sub.department}
                           </td>
-                          <td className="py-3.5 px-4 font-mono font-semibold text-slate-900 tabular-nums">
+                          <td className="py-3.5 px-4 font-mono font-semibold text-slate-900 dark:text-slate-100 tabular-nums">
                             {sub.defaultCoefficient}
                           </td>
-                          <td className="py-3.5 px-4 font-mono text-xs text-slate-600 tabular-nums">
+                          <td className="py-3.5 px-4 font-mono text-xs text-slate-600 dark:text-slate-400 tabular-nums">
                             {sub.assignedClassCount} classe(s)
                           </td>
                           <td className="py-3.5 px-4">
@@ -857,7 +854,7 @@ export function SubjectsPage() {
                                   setEditingSubject(sub);
                                   setSubjectModalOpen(true);
                                 }}
-                                className="px-2.5 py-1 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded cursor-pointer"
+                                className="px-2.5 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded cursor-pointer"
                               >
                                 Modifier
                               </button>
@@ -876,14 +873,14 @@ export function SubjectsPage() {
 
       {/* Modal Création / Édition Matière */}
       {subjectModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 dark:bg-slate-950/75 p-4">
           <div
             role="dialog"
             aria-modal="true"
-            className="w-full max-w-lg bg-white border border-slate-200 rounded-lg shadow-xl overflow-hidden"
+            className="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg shadow-xl overflow-hidden"
           >
-            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
-              <h2 className="text-base font-semibold text-slate-900">
+            <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700/80 flex items-center justify-between">
+              <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
                 {editingSubject ? `Modifier ${editingSubject.name}` : 'Nouvelle matière'}
               </h2>
               <button
@@ -893,7 +890,7 @@ export function SubjectsPage() {
                   setEditingSubject(null);
                 }}
                 aria-label="Fermer"
-                className="p-1 text-slate-400 hover:text-slate-700 rounded cursor-pointer"
+                className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -905,34 +902,34 @@ export function SubjectsPage() {
             >
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Code *
                   </label>
                   <input
                     type="text"
                     {...subjectForm.register('code')}
                     placeholder="ex: MATH"
-                    className="w-full px-3 py-2 text-sm font-mono uppercase border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm font-mono uppercase border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {subjectForm.formState.errors.code && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {subjectForm.formState.errors.code.message}
                     </p>
                   )}
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Intitulé officiel *
                   </label>
                   <input
                     type="text"
                     {...subjectForm.register('name')}
                     placeholder="ex: Mathématiques"
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {subjectForm.formState.errors.name && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {subjectForm.formState.errors.name.message}
                     </p>
                   )}
@@ -941,12 +938,12 @@ export function SubjectsPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Pôle disciplinaire *
                   </label>
                   <select
                     {...subjectForm.register('department')}
-                    className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
                   >
                     {DEPARTMENTS.map((dept) => (
                       <option key={dept} value={dept}>
@@ -957,17 +954,17 @@ export function SubjectsPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Coefficient par défaut *
                   </label>
                   <input
                     type="text"
                     inputMode="decimal"
                     {...subjectForm.register('defaultCoefficient')}
-                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {subjectForm.formState.errors.defaultCoefficient && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {subjectForm.formState.errors.defaultCoefficient.message}
                     </p>
                   )}
@@ -975,36 +972,36 @@ export function SubjectsPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Description / Objectifs
                 </label>
                 <textarea
                   rows={2}
                   {...subjectForm.register('description')}
                   placeholder="Précisions sur le programme ou les épreuves..."
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                  className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                 />
               </div>
 
               {editingSubject && (
-                <label className="flex items-center gap-2 text-xs font-medium text-slate-700 cursor-pointer">
+                <label className="flex items-center gap-2 text-xs font-medium text-slate-700 dark:text-slate-300 cursor-pointer">
                   <input
                     type="checkbox"
                     {...subjectForm.register('isActive')}
-                    className="rounded border-slate-300 text-indigo-600"
+                    className="rounded border-slate-300 dark:border-slate-700 text-indigo-600 dark:text-indigo-400"
                   />
                   Matière active dans l’établissement
                 </label>
               )}
 
-              <div className="pt-2 flex justify-end gap-2 border-t border-slate-100">
+              <div className="pt-2 flex justify-end gap-2 border-t border-slate-100 dark:border-slate-800">
                 <button
                   type="button"
                   onClick={() => {
                     setSubjectModalOpen(false);
                     setEditingSubject(null);
                   }}
-                  className="px-4 py-2 text-xs font-medium text-slate-700 border border-slate-200 rounded-md cursor-pointer"
+                  className="px-4 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/80 rounded-md cursor-pointer"
                 >
                   Annuler
                 </button>
@@ -1023,20 +1020,20 @@ export function SubjectsPage() {
 
       {/* Modal Affectation Matière à la Classe */}
       {assignModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 dark:bg-slate-950/75 p-4">
           <div
             role="dialog"
             aria-modal="true"
-            className="w-full max-w-lg bg-white border border-slate-200 rounded-lg shadow-xl overflow-hidden"
+            className="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg shadow-xl overflow-hidden"
           >
-            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+            <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700/80 flex items-center justify-between">
               <div>
-                <h2 className="text-base font-semibold text-slate-900">
+                <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
                   {editingClassSubject
                     ? `Modifier ${editingClassSubject.subjectName}`
                     : `Ajouter au programme · ${curriculum?.classInfo.name ?? ''}`}
                 </h2>
-                <p className="text-xs text-slate-500 mt-0.5">
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                   Coefficient, volume horaire hebdomadaire et enseignant titulaire.
                 </p>
               </div>
@@ -1047,7 +1044,7 @@ export function SubjectsPage() {
                   setEditingClassSubject(null);
                 }}
                 aria-label="Fermer"
-                className="p-1 text-slate-400 hover:text-slate-700 rounded cursor-pointer"
+                className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1059,7 +1056,7 @@ export function SubjectsPage() {
             >
               {!editingClassSubject && (
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Matière *
                   </label>
                   <select
@@ -1073,7 +1070,7 @@ export function SubjectsPage() {
                         }
                       },
                     })}
-                    className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
                   >
                     {availableSubjects.length === 0 && (
                       <option value="">Toutes les matières actives sont déjà affectées</option>
@@ -1085,7 +1082,7 @@ export function SubjectsPage() {
                     ))}
                   </select>
                   {assignForm.formState.errors.subjectId && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {assignForm.formState.errors.subjectId.message}
                     </p>
                   )}
@@ -1093,12 +1090,12 @@ export function SubjectsPage() {
               )}
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Enseignant responsable
                 </label>
                 <select
                   {...assignForm.register('teacherId')}
-                  className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                  className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
                 >
                   <option value="">Non affecté pour le moment</option>
                   {(teachersQuery.data?.items ?? []).map((t) => (
@@ -1111,57 +1108,57 @@ export function SubjectsPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Coefficient dans la classe *
                   </label>
                   <input
                     type="text"
                     inputMode="decimal"
                     {...assignForm.register('coefficient')}
-                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {assignForm.formState.errors.coefficient && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {assignForm.formState.errors.coefficient.message}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Heures par semaine *
                   </label>
                   <input
                     type="text"
                     inputMode="decimal"
                     {...assignForm.register('weeklyHours')}
-                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {assignForm.formState.errors.weeklyHours && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {assignForm.formState.errors.weeklyHours.message}
                     </p>
                   )}
                 </div>
               </div>
 
-              <label className="flex items-center gap-2 text-xs font-medium text-slate-700 cursor-pointer">
+              <label className="flex items-center gap-2 text-xs font-medium text-slate-700 dark:text-slate-300 cursor-pointer">
                 <input
                   type="checkbox"
                   {...assignForm.register('isOptional')}
-                  className="rounded border-slate-300 text-indigo-600"
+                  className="rounded border-slate-300 dark:border-slate-700 text-indigo-600 dark:text-indigo-400"
                 />
                 Enseignement optionnel / facultatif
               </label>
 
-              <div className="pt-2 flex justify-end gap-2 border-t border-slate-100">
+              <div className="pt-2 flex justify-end gap-2 border-t border-slate-100 dark:border-slate-800">
                 <button
                   type="button"
                   onClick={() => {
                     setAssignModalOpen(false);
                     setEditingClassSubject(null);
                   }}
-                  className="px-4 py-2 text-xs font-medium text-slate-700 border border-slate-200 rounded-md cursor-pointer"
+                  className="px-4 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/80 rounded-md cursor-pointer"
                 >
                   Annuler
                 </button>
@@ -1180,18 +1177,18 @@ export function SubjectsPage() {
 
       {/* Modal Copie de programme */}
       {copyModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 dark:bg-slate-950/75 p-4">
           <div
             role="dialog"
             aria-modal="true"
-            className="w-full max-w-md bg-white border border-slate-200 rounded-lg shadow-xl p-6 space-y-4"
+            className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg shadow-xl p-6 space-y-4"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-base font-semibold text-slate-900">
+                <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
                   Copier un programme existant
                 </h2>
-                <p className="text-xs text-slate-500 mt-0.5">
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                   Importe les matières et coefficients manquants vers {curriculum?.classInfo.name}.
                 </p>
               </div>
@@ -1199,20 +1196,20 @@ export function SubjectsPage() {
                 type="button"
                 onClick={() => setCopyModalOpen(false)}
                 aria-label="Fermer"
-                className="p-1 text-slate-400 hover:text-slate-700 rounded cursor-pointer"
+                className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-700 mb-1">
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Classe modèle
               </label>
               <select
                 value={copySourceClassId}
                 onChange={(e) => setCopySourceClassId(Number(e.target.value))}
-                className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
               >
                 {copyCandidates.map((c) => (
                   <option key={c.id} value={c.id}>
@@ -1222,12 +1219,12 @@ export function SubjectsPage() {
               </select>
             </div>
 
-            <label className="flex items-center gap-2 text-xs font-medium text-slate-700 cursor-pointer">
+            <label className="flex items-center gap-2 text-xs font-medium text-slate-700 dark:text-slate-300 cursor-pointer">
               <input
                 type="checkbox"
                 checked={copyIncludeTeachers}
                 onChange={(e) => setCopyIncludeTeachers(e.target.checked)}
-                className="rounded border-slate-300 text-indigo-600"
+                className="rounded border-slate-300 dark:border-slate-700 text-indigo-600 dark:text-indigo-400"
               />
               Conserver également les enseignants affectés
             </label>
@@ -1236,7 +1233,7 @@ export function SubjectsPage() {
               <button
                 type="button"
                 onClick={() => setCopyModalOpen(false)}
-                className="px-4 py-2 text-xs font-medium text-slate-700 border border-slate-200 rounded-md cursor-pointer"
+                className="px-4 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/80 rounded-md cursor-pointer"
               >
                 Annuler
               </button>

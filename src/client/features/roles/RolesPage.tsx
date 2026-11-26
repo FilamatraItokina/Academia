@@ -106,8 +106,8 @@ export function RolesPage() {
     >
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Rôles & Matrice des permissions</h1>
-          <p className="mt-1 text-sm text-slate-600">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Rôles & Matrice des permissions</h1>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
             Configurez précisément les autorisations des 8 profils de l’établissement secondaire.
           </p>
         </div>
@@ -116,8 +116,8 @@ export function RolesPage() {
           <div
             className={`px-4 py-3 rounded-lg border text-sm ${
               feedback.type === 'success'
-                ? 'bg-emerald-50 border-emerald-200 text-emerald-900'
-                : 'bg-red-50 border-red-200 text-red-900'
+                ? 'bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-800/70 text-emerald-900 dark:text-emerald-200'
+                : 'bg-red-50 dark:bg-red-950/50 border-red-200 dark:border-red-800/70 text-red-900 dark:text-red-200'
             }`}
           >
             {feedback.text}
@@ -136,7 +136,7 @@ export function RolesPage() {
           />
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            <div className="lg:col-span-4 bg-white border border-slate-200 rounded-lg divide-y divide-slate-100 overflow-hidden">
+            <div className="lg:col-span-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg divide-y divide-slate-100 dark:divide-slate-800 overflow-hidden">
               {rolesQuery.data?.items.map((role) => {
                 const isSelected = selectedRole?.id === role.id;
                 return (
@@ -146,15 +146,15 @@ export function RolesPage() {
                     onClick={() => setSelectedRoleId(role.id)}
                     className={`w-full text-left px-4 py-3.5 transition-colors cursor-pointer ${
                       isSelected
-                        ? 'bg-slate-900 text-white'
-                        : 'bg-white text-slate-900 hover:bg-slate-50'
+                        ? 'bg-slate-900 dark:bg-indigo-600 text-white'
+                        : 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800/70'
                     }`}
                   >
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-sm font-semibold">{role.name}</span>
                       <span
                         className={`text-xs font-mono tabular-nums ${
-                          isSelected ? 'text-slate-300' : 'text-slate-500'
+                          isSelected ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'
                         }`}
                       >
                         {role.userCount} util.
@@ -162,7 +162,7 @@ export function RolesPage() {
                     </div>
                     <p
                       className={`mt-1 text-xs line-clamp-2 ${
-                        isSelected ? 'text-slate-300' : 'text-slate-500'
+                        isSelected ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'
                       }`}
                     >
                       {role.description}
@@ -172,23 +172,23 @@ export function RolesPage() {
               })}
             </div>
 
-            <div className="lg:col-span-8 bg-white border border-slate-200 rounded-lg p-6">
+            <div className="lg:col-span-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg p-6">
               {selectedRole && (
                 <>
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-200">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-200 dark:border-slate-700/80">
                     <div>
                       <div className="flex items-center gap-2">
-                        <Shield className="w-4 h-4 text-indigo-600 shrink-0" />
-                        <h2 className="text-base font-semibold text-slate-900">
+                        <Shield className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                        <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
                           {selectedRole.name}
                         </h2>
-                        <span className="text-xs font-mono text-slate-500">
+                        <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
                           · {selectedRole.code}
                         </span>
                       </div>
-                      <p className="mt-1 text-xs text-slate-600">{selectedRole.description}</p>
+                      <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">{selectedRole.description}</p>
                     </div>
-                    <span className="text-xs font-mono text-slate-600 tabular-nums shrink-0">
+                    <span className="text-xs font-mono text-slate-600 dark:text-slate-400 tabular-nums shrink-0">
                       {draftPerms.length} permission(s)
                     </span>
                   </div>
@@ -196,7 +196,7 @@ export function RolesPage() {
                   <div className="mt-5 space-y-6">
                     {groupedPermissions.map(([moduleName, perms]) => (
                       <div key={moduleName}>
-                        <h3 className="text-xs font-semibold text-slate-700 pb-2 border-b border-slate-100">
+                        <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300 pb-2 border-b border-slate-100 dark:border-slate-800">
                           {moduleName}
                         </h3>
                         <div className="mt-2.5 grid grid-cols-1 md:grid-cols-2 gap-2.5">
@@ -210,12 +210,12 @@ export function RolesPage() {
                                 key={perm.code}
                                 className={`flex items-start gap-2.5 p-3 border rounded-md text-xs transition-colors ${
                                   canManage && !isLockedAdminPerm
-                                    ? 'cursor-pointer hover:bg-slate-50'
+                                    ? 'cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/70'
                                     : 'opacity-80 cursor-default'
                                 } ${
                                   checked
-                                    ? 'border-indigo-300 bg-indigo-50/40'
-                                    : 'border-slate-200 bg-white'
+                                    ? 'border-indigo-300 dark:border-indigo-700 bg-indigo-50/40 dark:bg-indigo-950/35'
+                                    : 'border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-900'
                                 }`}
                               >
                                 <input
@@ -223,13 +223,13 @@ export function RolesPage() {
                                   checked={checked}
                                   disabled={!canManage || isLockedAdminPerm}
                                   onChange={() => togglePerm(perm.code)}
-                                  className="mt-0.5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                                  className="mt-0.5 rounded border-slate-300 dark:border-slate-700 text-indigo-600 dark:text-indigo-400 focus:ring-indigo-500"
                                 />
                                 <div className="min-w-0">
-                                  <div className="font-mono font-medium text-slate-900">
+                                  <div className="font-mono font-medium text-slate-900 dark:text-slate-100">
                                     {perm.code}
                                   </div>
-                                  <div className="mt-0.5 text-slate-600 leading-snug">
+                                  <div className="mt-0.5 text-slate-600 dark:text-slate-400 leading-snug">
                                     {perm.description}
                                   </div>
                                 </div>

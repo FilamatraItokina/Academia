@@ -181,13 +181,13 @@ export function TeachersPage() {
     >
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Corps enseignant</h1>
-          <p className="mt-1 text-sm text-slate-600">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Corps enseignant</h1>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
             Répertoire des professeurs, spécialités disciplinaires, types de contrats et coordonnées professionnelles.
           </p>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-lg p-4 flex flex-col md:flex-row gap-3">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg p-4 flex flex-col md:flex-row gap-3">
           <div className="relative flex-1 min-w-0">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
@@ -198,7 +198,7 @@ export function TeachersPage() {
                 setPage(1);
               }}
               placeholder="Rechercher par code (ENS-...), nom, prénom ou e-mail..."
-              className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+              className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white dark:focus:bg-slate-900"
             />
           </div>
 
@@ -210,7 +210,7 @@ export function TeachersPage() {
               setPage(1);
             }}
             placeholder="Filtrer par spécialité..."
-            className="px-3 py-2 text-sm bg-white border border-slate-200 rounded-md md:w-56"
+            className="px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md md:w-56"
           />
 
           <select
@@ -220,7 +220,7 @@ export function TeachersPage() {
               setStatusFilter(e.target.value as 'all' | 'true' | 'false');
               setPage(1);
             }}
-            className="px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+            className="px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
           >
             <option value="all">Tous les statuts</option>
             <option value="true">Actifs uniquement</option>
@@ -252,11 +252,11 @@ export function TeachersPage() {
             }
           />
         ) : (
-          <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-slate-200 bg-slate-50/70 text-xs font-medium text-slate-600">
+                  <tr className="border-b border-slate-200 dark:border-slate-700/80 bg-slate-50/70 dark:bg-slate-800/50 text-xs font-medium text-slate-600 dark:text-slate-400">
                     <th className="py-3 px-4">Enseignant</th>
                     <th className="py-3 px-4">Matricule</th>
                     <th className="py-3 px-4">Spécialité</th>
@@ -265,37 +265,37 @@ export function TeachersPage() {
                     <th className="py-3 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 text-sm">
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
                   {teachersQuery.data?.items.map((t) => (
                     <tr
                       key={t.id}
                       onClick={() => setDrawerTeacher(t)}
-                      className="hover:bg-slate-50/80 cursor-pointer transition-colors"
+                      className="hover:bg-slate-50/80 dark:hover:bg-slate-800/60 cursor-pointer transition-colors"
                     >
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 rounded-full bg-indigo-50 text-indigo-700 flex items-center justify-center text-xs font-semibold shrink-0">
+                          <div className="w-9 h-9 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-xs font-semibold shrink-0">
                             {t.firstName[0]}
                             {t.lastName[0]}
                           </div>
                           <div className="min-w-0">
-                            <p className="font-semibold text-slate-900 truncate">
+                            <p className="font-semibold text-slate-900 dark:text-slate-100 truncate">
                               {t.lastName} {t.firstName}
                             </p>
-                            <p className="text-xs text-slate-500 truncate">{t.email}</p>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{t.email}</p>
                           </div>
                         </div>
                       </td>
-                      <td className="py-3 px-4 font-mono text-xs font-semibold text-slate-800 whitespace-nowrap">
+                      <td className="py-3 px-4 font-mono text-xs font-semibold text-slate-800 dark:text-slate-200 whitespace-nowrap">
                         {t.employeeCode}
                       </td>
-                      <td className="py-3 px-4 text-xs text-slate-700">
-                        <p className="font-medium text-slate-900">{t.specialty}</p>
+                      <td className="py-3 px-4 text-xs text-slate-700 dark:text-slate-300">
+                        <p className="font-medium text-slate-900 dark:text-slate-100">{t.specialty}</p>
                         {t.qualification && (
-                          <p className="text-slate-500">{t.qualification}</p>
+                          <p className="text-slate-500 dark:text-slate-400">{t.qualification}</p>
                         )}
                       </td>
-                      <td className="py-3 px-4 text-xs text-slate-600 whitespace-nowrap">
+                      <td className="py-3 px-4 text-xs text-slate-600 dark:text-slate-400 whitespace-nowrap">
                         {CONTRACT_LABELS[t.contractType]}
                       </td>
                       <td className="py-3 px-4 whitespace-nowrap">
@@ -309,7 +309,7 @@ export function TeachersPage() {
                           <button
                             type="button"
                             onClick={() => setDrawerTeacher(t)}
-                            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded cursor-pointer"
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded cursor-pointer"
                           >
                             <FolderOpen className="w-3.5 h-3.5" />
                             Fiche
@@ -318,7 +318,7 @@ export function TeachersPage() {
                             <button
                               type="button"
                               onClick={() => openEdit(t)}
-                              className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded cursor-pointer"
+                              className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded cursor-pointer"
                             >
                               <Edit3 className="w-3.5 h-3.5" />
                               Modifier
@@ -333,7 +333,7 @@ export function TeachersPage() {
             </div>
 
             {teachersQuery.data && teachersQuery.data.pagination.totalPages > 1 && (
-              <div className="px-4 py-3 border-t border-slate-200 bg-slate-50/50 flex items-center justify-between text-xs text-slate-600">
+              <div className="px-4 py-3 border-t border-slate-200 dark:border-slate-700/80 bg-slate-50/50 dark:bg-slate-800/40 flex items-center justify-between text-xs text-slate-600 dark:text-slate-400">
                 <span className="font-mono tabular-nums">
                   {teachersQuery.data.pagination.total} enseignant(s) · Page{' '}
                   {teachersQuery.data.pagination.page} /{' '}
@@ -344,7 +344,7 @@ export function TeachersPage() {
                     type="button"
                     disabled={page <= 1}
                     onClick={() => setPage((p) => Math.max(1, p - 1))}
-                    className="px-3 py-1.5 bg-white border border-slate-200 rounded hover:bg-slate-50 disabled:opacity-50 cursor-pointer"
+                    className="px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded hover:bg-slate-50 dark:hover:bg-slate-800/70 disabled:opacity-50 cursor-pointer"
                   >
                     Précédent
                   </button>
@@ -352,7 +352,7 @@ export function TeachersPage() {
                     type="button"
                     disabled={page >= teachersQuery.data.pagination.totalPages}
                     onClick={() => setPage((p) => p + 1)}
-                    className="px-3 py-1.5 bg-white border border-slate-200 rounded hover:bg-slate-50 disabled:opacity-50 cursor-pointer"
+                    className="px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded hover:bg-slate-50 dark:hover:bg-slate-800/70 disabled:opacity-50 cursor-pointer"
                   >
                     Suivant
                   </button>
@@ -391,47 +391,47 @@ export function TeachersPage() {
       >
         {drawerTeacher && (
           <div className="space-y-6">
-            <div className="grid grid-cols-2 gap-4 text-xs pb-5 border-b border-slate-200">
+            <div className="grid grid-cols-2 gap-4 text-xs pb-5 border-b border-slate-200 dark:border-slate-700/80">
               <div>
-                <span className="text-slate-500 block">E-mail professionnel</span>
-                <span className="font-medium text-slate-900">{drawerTeacher.email}</span>
+                <span className="text-slate-500 dark:text-slate-400 block">E-mail professionnel</span>
+                <span className="font-medium text-slate-900 dark:text-slate-100">{drawerTeacher.email}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">Téléphone</span>
-                <span className="font-mono font-medium text-slate-900">
+                <span className="text-slate-500 dark:text-slate-400 block">Téléphone</span>
+                <span className="font-mono font-medium text-slate-900 dark:text-slate-100">
                   {drawerTeacher.phone || '—'}
                 </span>
               </div>
               <div>
-                <span className="text-slate-500 block">Spécialité</span>
-                <span className="font-medium text-slate-900">{drawerTeacher.specialty}</span>
+                <span className="text-slate-500 dark:text-slate-400 block">Spécialité</span>
+                <span className="font-medium text-slate-900 dark:text-slate-100">{drawerTeacher.specialty}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">Qualification / Grade</span>
-                <span className="font-medium text-slate-900">
+                <span className="text-slate-500 dark:text-slate-400 block">Qualification / Grade</span>
+                <span className="font-medium text-slate-900 dark:text-slate-100">
                   {drawerTeacher.qualification || '—'}
                 </span>
               </div>
               <div>
-                <span className="text-slate-500 block">Type de contrat</span>
-                <span className="font-medium text-slate-900">
+                <span className="text-slate-500 dark:text-slate-400 block">Type de contrat</span>
+                <span className="font-medium text-slate-900 dark:text-slate-100">
                   {CONTRACT_LABELS[drawerTeacher.contractType]}
                 </span>
               </div>
               <div>
-                <span className="text-slate-500 block">Date d’embauche</span>
-                <span className="font-mono font-medium text-slate-900">
+                <span className="text-slate-500 dark:text-slate-400 block">Date d’embauche</span>
+                <span className="font-mono font-medium text-slate-900 dark:text-slate-100">
                   {drawerTeacher.hireDate || '—'}
                 </span>
               </div>
             </div>
 
-            <div className="p-4 bg-slate-50 border border-slate-200 rounded-md">
-              <h3 className="text-xs font-semibold text-slate-900">
+            <div className="p-4 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-md">
+              <h3 className="text-xs font-semibold text-slate-900 dark:text-slate-100">
                 Matières & Classes attribuées
               </h3>
-              <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                Les affectations par matière et par classe apparaîtront ici dès l’activation du Module 7 (Matières, Coefficients & Affectations).
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Consultez et gérez les affectations par matière et par classe depuis la page Matières & Programmes.
               </p>
             </div>
           </div>
@@ -440,10 +440,10 @@ export function TeachersPage() {
 
       {/* Modal Enseignant */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
-          <div className="w-full max-w-xl bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-[90vh] flex flex-col">
-            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between shrink-0">
-              <h2 className="text-base font-semibold text-slate-900">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 dark:bg-slate-950/75 p-4">
+          <div className="w-full max-w-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg shadow-lg overflow-hidden max-h-[90vh] flex flex-col">
+            <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700/80 flex items-center justify-between shrink-0">
+              <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
                 {editingTeacher
                   ? `Modifier ${editingTeacher.firstName} ${editingTeacher.lastName}`
                   : 'Nouvel enseignant'}
@@ -451,7 +451,7 @@ export function TeachersPage() {
               <button
                 type="button"
                 onClick={() => setModalOpen(false)}
-                className="text-slate-400 hover:text-slate-700 p-1 rounded cursor-pointer"
+                className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1 rounded cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -463,27 +463,27 @@ export function TeachersPage() {
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">Prénom *</label>
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Prénom *</label>
                   <input
                     type="text"
                     {...form.register('firstName')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {form.formState.errors.firstName && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {form.formState.errors.firstName.message}
                     </p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">Nom *</label>
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Nom *</label>
                   <input
                     type="text"
                     {...form.register('lastName')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {form.formState.errors.lastName && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {form.formState.errors.lastName.message}
                     </p>
                   )}
@@ -492,63 +492,63 @@ export function TeachersPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     E-mail professionnel *
                   </label>
                   <input
                     type="email"
                     {...form.register('email')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {form.formState.errors.email && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {form.formState.errors.email.message}
                     </p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">Téléphone</label>
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Téléphone</label>
                   <input
                     type="tel"
                     {...form.register('phone')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Spécialité principale *
                   </label>
                   <input
                     type="text"
                     placeholder="ex: Mathématiques, Lettres modernes"
                     {...form.register('specialty')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {form.formState.errors.specialty && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {form.formState.errors.specialty.message}
                     </p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Qualification / Grade
                   </label>
                   <input
                     type="text"
                     placeholder="ex: Agrégé, Certifié CAPES"
                     {...form.register('qualification')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Matricule interne
                   </label>
                   <input
@@ -556,14 +556,14 @@ export function TeachersPage() {
                     disabled={Boolean(editingTeacher)}
                     placeholder="Auto (ENS-...)"
                     {...form.register('employeeCode')}
-                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md disabled:bg-slate-100"
+                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md disabled:bg-slate-100 dark:disabled:bg-slate-800/70"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">Contrat</label>
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Contrat</label>
                   <select
                     {...form.register('contractType')}
-                    className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
                   >
                     <option value="PERMANENT">Titulaire</option>
                     <option value="CONTRACT">Contractuel</option>
@@ -571,31 +571,31 @@ export function TeachersPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Date d’embauche
                   </label>
                   <input
                     type="date"
                     {...form.register('hireDate')}
-                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                 </div>
               </div>
 
-              <label className="flex items-center gap-2 text-xs text-slate-700 cursor-pointer pt-1">
+              <label className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300 cursor-pointer pt-1">
                 <input
                   type="checkbox"
                   {...form.register('isActive')}
-                  className="rounded border-slate-300 text-indigo-600"
+                  className="rounded border-slate-300 dark:border-slate-700 text-indigo-600 dark:text-indigo-400"
                 />
                 <span>Enseignant actuellement en exercice dans l’établissement</span>
               </label>
 
-              <div className="pt-4 border-t border-slate-100 flex justify-end gap-3">
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 text-sm font-medium text-slate-700 border border-slate-200 rounded-md hover:bg-slate-50 cursor-pointer"
+                  className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/80 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800/70 cursor-pointer"
                 >
                   Annuler
                 </button>

@@ -635,7 +635,7 @@ export const subjectsRelations = relations(subjects, ({ many }) => ({
   classSubjects: many(classSubjects),
 }));
 
-export const classSubjectsRelations = relations(classSubjects, ({ one }) => ({
+export const classSubjectsRelations = relations(classSubjects, ({ one, many }) => ({
   class: one(classes, {
     fields: [classSubjects.classId],
     references: [classes.id],
@@ -648,6 +648,196 @@ export const classSubjectsRelations = relations(classSubjects, ({ one }) => ({
     fields: [classSubjects.teacherId],
     references: [teachers.id],
   }),
+  assessments: many(assessments),
 }));
+
+// ==========================================
+// PHASE 2 — MODULE 8 : ÉVALUATIONS & NOTES
+// ==========================================
+
+export const assessments = pgTable(
+  'assessments',
+  {
+    id: serial('id').primaryKey(),
+    classSubjectId: integer('class_subject_id')
+      .references(() => classSubjects.id, { onDelete: 'cascade' })
+      .notNull(),
+    termId: integer('term_id')
+      .references(() => terms.id, { onDelete: 'restrict' })
+      .notNull(),
+    title: text('title').notNull(),
+    assessmentType: text('assessment_type').notNull().default('TEST'), // QUIZ | TEST | EXAM | ORAL | PRACTICAL
+    assessmentDate: date('assessment_date').notNull(),
+    maxScore: numeric('max_score', { precision: 5, scale: 2 }).notNull().default('20.00'),
+    weight: numeric('weight', { precision: 4, scale: 2 }).notNull().default('1.00'),
+    description: text('description').notNull().default(''),
+    isPublished: boolean('is_published').notNull().default(false),
+    createdByUserId: integer('created_by_user_id').references(() => users.id, {
+      onDelete: 'set null',
+    }),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  },
+  (table) => [
+    index('assessments_class_subject_idx').on(table.classSubjectId),
+    index('assessments_term_idx').on(table.termId),
+    index('assessments_date_idx').on(table.assessmentDate),
+  ]
+);
+
+export const grades = pgTable(
+  'grades',
+  {
+    id: serial('id').primaryKey(),
+    assessmentId: integer('assessment_id')
+      .references(() => assessments.id, { onDelete: 'cascade' })
+      .notNull(),
+    studentId: integer('student_id')
+      .references(() => students.id, { onDelete: 'cascade' })
+      .notNull(),
+    score: numeric('score', { precision: 6, scale: 2 }),
+    isAbsent: boolean('is_absent').notNull().default(false),
+    comment: text('comment').notNull().default(''),
+    gradedByUserId: integer('graded_by_user_id').references(() => users.id, {
+      onDelete: 'set null',
+    }),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex('grades_assessment_student_uidx').on(table.assessmentId, table.studentId),
+    index('grades_student_idx').on(table.studentId),
+  ]
+);
+
+export const assessmentsRelations = relations(assessments, ({ one, many }) => ({
+  classSubject: one(classSubjects, {
+    fields: [assessments.classSubjectId],
+    references: [classSubjects.id],
+  }),
+  term: one(terms, {
+    fields: [assessments.termId],
+    references: [terms.id],
+  }),
+  createdBy: one(users, {
+    fields: [assessments.createdByUserId],
+    references: [users.id],
+  }),
+  grades: many(grades),
+}));
+
+export const gradesRelations = relations(grades, ({ one }) => ({
+  assessment: one(assessments, {
+    fields: [grades.assessmentId],
+    references: [assessments.id],
+  }),
+  student: one(students, {
+    fields: [grades.studentId],
+    references: [students.id],
+  }),
+  gradedBy: one(users, {
+    fields: [grades.gradedByUserId],
+    references: [users.id],
+  }),
+}));
+
+// ==========================================
+// PHASE 2 — MODULE 9 : BULLETINS SCOLAIRES & PDF
+// ==========================================
+
+export const reportCards = pgTable(
+  'report_cards',
+  {
+    id: serial('id').primaryKey(),
+    studentId: integer('student_id')
+      .references(() => students.id, { onDelete: 'cascade' })
+      .notNull(),
+    classId: integer('class_id')
+      .references(() => classes.id, { onDelete: 'cascade' })
+      .notNull(),
+    termId: integer('term_id')
+      .references(() => terms.id, { onDelete: 'restrict' })
+      .notNull(),
+    generalAverage: numeric('general_average', { precision: 5, scale: 2 }),
+    classAverage: numeric('class_average', { precision: 5, scale: 2 }),
+    rank: integer('rank'),
+    totalStudents: integer('total_students').notNull().default(0),
+    absencesCount: integer('absences_count').notNull().default(0),
+    latesCount: integer('lates_count').notNull().default(0),
+    honorMention: text('honor_mention').notNull().default(''),
+    councilRemark: text('council_remark').notNull().default(''),
+    status: text('status').notNull().default('DRAFT'), // DRAFT | VALIDATED
+    validatedByUserId: integer('validated_by_user_id').references(() => users.id, {
+      onDelete: 'set null',
+    }),
+    validatedAt: timestamp('validated_at'),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex('report_cards_student_term_uidx').on(table.studentId, table.termId),
+    index('report_cards_class_term_idx').on(table.classId, table.termId),
+  ]
+);
+
+export const reportCardSubjectRemarks = pgTable(
+  'report_card_subject_remarks',
+  {
+    id: serial('id').primaryKey(),
+    reportCardId: integer('report_card_id')
+      .references(() => reportCards.id, { onDelete: 'cascade' })
+      .notNull(),
+    classSubjectId: integer('class_subject_id')
+      .references(() => classSubjects.id, { onDelete: 'cascade' })
+      .notNull(),
+    subjectAverage: numeric('subject_average', { precision: 5, scale: 2 }),
+    classSubjectAverage: numeric('class_subject_average', { precision: 5, scale: 2 }),
+    coefficient: numeric('coefficient', { precision: 4, scale: 1 }).notNull().default('1.0'),
+    teacherRemark: text('teacher_remark').notNull().default(''),
+    updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  },
+  (table) => [
+    uniqueIndex('report_card_remarks_card_cs_uidx').on(
+      table.reportCardId,
+      table.classSubjectId
+    ),
+  ]
+);
+
+export const reportCardsRelations = relations(reportCards, ({ one, many }) => ({
+  student: one(students, {
+    fields: [reportCards.studentId],
+    references: [students.id],
+  }),
+  class: one(classes, {
+    fields: [reportCards.classId],
+    references: [classes.id],
+  }),
+  term: one(terms, {
+    fields: [reportCards.termId],
+    references: [terms.id],
+  }),
+  validatedBy: one(users, {
+    fields: [reportCards.validatedByUserId],
+    references: [users.id],
+  }),
+  subjectRemarks: many(reportCardSubjectRemarks),
+}));
+
+export const reportCardSubjectRemarksRelations = relations(
+  reportCardSubjectRemarks,
+  ({ one }) => ({
+    reportCard: one(reportCards, {
+      fields: [reportCardSubjectRemarks.reportCardId],
+      references: [reportCards.id],
+    }),
+    classSubject: one(classSubjects, {
+      fields: [reportCardSubjectRemarks.classSubjectId],
+      references: [classSubjects.id],
+    }),
+  })
+);
+
+
 
 

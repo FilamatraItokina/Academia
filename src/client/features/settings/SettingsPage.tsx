@@ -102,20 +102,20 @@ export function SettingsPage() {
       <div className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">Paramètres de l’établissement</h1>
-            <p className="mt-1 text-sm text-slate-600">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Paramètres de l’établissement</h1>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
               Identité, découpage des périodes académiques, barème de notation et documentation API.
             </p>
           </div>
 
-          <div className="flex items-center gap-1 p-1 bg-slate-200/70 rounded-md shrink-0 self-start sm:self-auto">
+          <div className="flex items-center gap-1 p-1 bg-slate-200/70 dark:bg-slate-800 rounded-md shrink-0 self-start sm:self-auto">
             <button
               type="button"
               onClick={() => setActiveTab('general')}
               className={`px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap cursor-pointer ${
                 activeTab === 'general'
-                  ? 'bg-white text-slate-900 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
               }`}
             >
               Configuration générale
@@ -125,8 +125,8 @@ export function SettingsPage() {
               onClick={() => setActiveTab('openapi')}
               className={`px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap cursor-pointer ${
                 activeTab === 'openapi'
-                  ? 'bg-white text-slate-900 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
               }`}
             >
               Documentation API
@@ -138,8 +138,8 @@ export function SettingsPage() {
           <div
             className={`px-4 py-3 rounded-lg border text-sm ${
               feedback.type === 'success'
-                ? 'bg-emerald-50 border-emerald-200 text-emerald-900'
-                : 'bg-red-50 border-red-200 text-red-900'
+                ? 'bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-800/70 text-emerald-900 dark:text-emerald-200'
+                : 'bg-red-50 dark:bg-red-950/50 border-red-200 dark:border-red-800/70 text-red-900 dark:text-red-200'
             }`}
           >
             {feedback.text}
@@ -157,34 +157,34 @@ export function SettingsPage() {
           ) : (
             <form
               onSubmit={form.handleSubmit((vals) => saveMutation.mutate(vals))}
-              className="bg-white border border-slate-200 rounded-lg p-6 space-y-6"
+              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg p-6 space-y-6"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Nom officiel de l’établissement
                   </label>
                   <input
                     type="text"
                     disabled={!canManage}
                     {...form.register('schoolName')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md disabled:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md disabled:bg-slate-50 dark:disabled:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                   {form.formState.errors.schoolName && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {form.formState.errors.schoolName.message}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Type d’établissement
                   </label>
                   <select
                     disabled={!canManage}
                     {...form.register('schoolType')}
-                    className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-md disabled:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md disabled:bg-slate-50 dark:disabled:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="COLLEGE">Collège</option>
                     <option value="LYCEE">Lycée</option>
@@ -193,13 +193,13 @@ export function SettingsPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Système de périodes scolaires
                   </label>
                   <select
                     disabled={!canManage}
                     {...form.register('academicSystem')}
-                    className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-md disabled:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md disabled:bg-slate-50 dark:disabled:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="TRIMESTER">Trimestres (3 périodes / an)</option>
                     <option value="SEMESTER">Semestres (2 périodes / an)</option>
@@ -208,74 +208,74 @@ export function SettingsPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-medium text-slate-700 mb-1">
+                    <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                       Barème par défaut
                     </label>
                     <input
                       type="number"
                       disabled={!canManage}
                       {...form.register('gradingScale', { valueAsNumber: true })}
-                      className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md disabled:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md disabled:bg-slate-50 dark:disabled:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-slate-700 mb-1">
+                    <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                       Devise (ISO)
                     </label>
                     <input
                       type="text"
                       disabled={!canManage}
                       {...form.register('currency')}
-                      className="w-full px-3 py-2 text-sm font-mono uppercase border border-slate-200 rounded-md disabled:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full px-3 py-2 text-sm font-mono uppercase border border-slate-200 dark:border-slate-700/80 rounded-md disabled:bg-slate-50 dark:disabled:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     E-mail administratif
                   </label>
                   <input
                     type="email"
                     disabled={!canManage}
                     {...form.register('email')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md disabled:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md disabled:bg-slate-50 dark:disabled:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                   {form.formState.errors.email && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {form.formState.errors.email.message}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Téléphone
                   </label>
                   <input
                     type="text"
                     disabled={!canManage}
                     {...form.register('phone')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md disabled:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md disabled:bg-slate-50 dark:disabled:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Adresse postale
                   </label>
                   <input
                     type="text"
                     disabled={!canManage}
                     {...form.register('address')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md disabled:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md disabled:bg-slate-50 dark:disabled:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>
               </div>
 
               {canManage && (
-                <div className="pt-4 border-t border-slate-100 flex justify-end">
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end">
                   <button
                     type="submit"
                     disabled={saveMutation.isPending}
@@ -289,15 +289,15 @@ export function SettingsPage() {
             </form>
           )
         ) : (
-          <div className="bg-white border border-slate-200 rounded-lg p-6 space-y-4">
-            <div className="flex items-center justify-between gap-4 pb-4 border-b border-slate-100">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg p-6 space-y-4">
+            <div className="flex items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-2.5">
-                <FileCode2 className="w-4 h-4 text-indigo-600" />
+                <FileCode2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                 <div>
-                  <h2 className="text-sm font-semibold text-slate-900">
+                  <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                     Spécification OpenAPI 3.0 (/api/v1)
                   </h2>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
                     Endpoints REST actifs et schémas de sécurité Bearer JWT
                   </p>
                 </div>
@@ -306,7 +306,7 @@ export function SettingsPage() {
                 href="/api/v1/docs/openapi.json"
                 target="_blank"
                 rel="noreferrer"
-                className="text-xs font-mono text-indigo-600 hover:underline whitespace-nowrap shrink-0"
+                className="text-xs font-mono text-indigo-600 dark:text-indigo-400 hover:underline whitespace-nowrap shrink-0"
               >
                 /api/v1/docs/openapi.json
               </a>
@@ -315,7 +315,7 @@ export function SettingsPage() {
             {openApiQuery.isLoading ? (
               <TableSkeleton rows={5} cols={3} />
             ) : openApiQuery.data ? (
-              <div className="divide-y divide-slate-100">
+              <div className="divide-y divide-slate-100 dark:divide-slate-800">
                 {Object.entries(openApiQuery.data.paths).map(([path, methods]) =>
                   Object.entries(methods).map(([method, meta]) => (
                     <div
@@ -323,14 +323,14 @@ export function SettingsPage() {
                       className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2"
                     >
                       <div className="flex items-center gap-3 min-w-0">
-                        <span className="text-xs font-mono font-semibold uppercase text-indigo-700 w-14 shrink-0">
+                        <span className="text-xs font-mono font-semibold uppercase text-indigo-700 dark:text-indigo-300 w-14 shrink-0">
                           {method}
                         </span>
-                        <span className="text-xs font-mono text-slate-900 truncate">
+                        <span className="text-xs font-mono text-slate-900 dark:text-slate-100 truncate">
                           /api/v1{path}
                         </span>
                       </div>
-                      <span className="text-xs text-slate-600">{meta.summary}</span>
+                      <span className="text-xs text-slate-600 dark:text-slate-400">{meta.summary}</span>
                     </div>
                   ))
                 )}

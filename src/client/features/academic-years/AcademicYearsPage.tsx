@@ -57,23 +57,23 @@ type TermFormValues = z.infer<typeof termFormSchema>;
 function YearStatusLabel({ status }: { status: AcademicYearItem['status'] }) {
   if (status === 'ACTIVE') {
     return (
-      <span className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-800 whitespace-nowrap">
-        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+      <span className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-800 dark:text-emerald-300 whitespace-nowrap">
+        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
         Année active
       </span>
     );
   }
   if (status === 'CLOSED') {
     return (
-      <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 whitespace-nowrap">
-        <Lock className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+      <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 dark:text-slate-400 whitespace-nowrap">
+        <Lock className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400 shrink-0" />
         Clôturée
       </span>
     );
   }
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-800 whitespace-nowrap">
-      <Clock className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-800 dark:text-amber-300 whitespace-nowrap">
+      <Clock className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
       Préparation
     </span>
   );
@@ -326,15 +326,15 @@ export function AcademicYearsPage() {
       <div className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
               Années scolaires & Périodes
             </h1>
-            <p className="mt-1 text-sm text-slate-600">
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
               Planifiez les exercices académiques, activez l’année en cours et découpez les trimestres ou semestres.
             </p>
           </div>
 
-          <div className="flex items-center gap-1 p-1 bg-slate-200/70 rounded-md shrink-0 self-start sm:self-auto">
+          <div className="flex items-center gap-1 p-1 bg-slate-200/70 dark:bg-slate-800 rounded-md shrink-0 self-start sm:self-auto">
             {(
               [
                 { id: 'ALL', label: 'Toutes' },
@@ -349,8 +349,8 @@ export function AcademicYearsPage() {
                 onClick={() => setStatusFilter(tab.id)}
                 className={`px-3 py-1.5 text-xs font-medium rounded transition-colors whitespace-nowrap cursor-pointer ${
                   statusFilter === tab.id
-                    ? 'bg-white text-slate-900 shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-xs'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
                 }`}
               >
                 {tab.label}
@@ -363,8 +363,8 @@ export function AcademicYearsPage() {
           <div
             className={`px-4 py-3 rounded-lg border text-sm flex items-center justify-between gap-4 ${
               feedback.type === 'success'
-                ? 'bg-emerald-50 border-emerald-200 text-emerald-900'
-                : 'bg-red-50 border-red-200 text-red-900'
+                ? 'bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-800/70 text-emerald-900 dark:text-emerald-200'
+                : 'bg-red-50 dark:bg-red-950/50 border-red-200 dark:border-red-800/70 text-red-900 dark:text-red-200'
             }`}
           >
             <span>{feedback.text}</span>
@@ -406,17 +406,17 @@ export function AcademicYearsPage() {
             {filteredYears.map((year) => (
               <section
                 key={year.id}
-                className="bg-white border border-slate-200 rounded-lg overflow-hidden"
+                className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg overflow-hidden"
               >
-                <div className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100">
+                <div className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800">
                   <div>
                     <div className="flex flex-wrap items-center gap-3">
-                      <h2 className="text-lg font-bold text-slate-900 font-mono tabular-nums">
+                      <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 font-mono tabular-nums">
                         {year.name}
                       </h2>
                       <YearStatusLabel status={year.status} />
                     </div>
-                    <p className="mt-1 text-xs font-mono text-slate-500 tabular-nums">
+                    <p className="mt-1 text-xs font-mono text-slate-500 dark:text-slate-400 tabular-nums">
                       Du {year.startDate} au {year.endDate} · {year.terms.length} période(s)
                     </p>
                   </div>
@@ -428,7 +428,7 @@ export function AcademicYearsPage() {
                           <button
                             type="button"
                             onClick={() => openEditYear(year)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded-md whitespace-nowrap cursor-pointer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded-md whitespace-nowrap cursor-pointer"
                           >
                             <Edit3 className="w-3.5 h-3.5" />
                             Modifier
@@ -436,7 +436,7 @@ export function AcademicYearsPage() {
                           <button
                             type="button"
                             onClick={() => openAddTerm(year)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded-md whitespace-nowrap cursor-pointer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded-md whitespace-nowrap cursor-pointer"
                           >
                             <Plus className="w-3.5 h-3.5" />
                             Ajouter période
@@ -459,7 +459,7 @@ export function AcademicYearsPage() {
                         <button
                           type="button"
                           onClick={() => setConfirmAction({ type: 'close', year })}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-red-700 bg-white border border-red-200 hover:bg-red-50 rounded-md whitespace-nowrap cursor-pointer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-red-700 dark:text-red-400 bg-white dark:bg-slate-900 border border-red-200 dark:border-red-800/70 hover:bg-red-50 dark:hover:bg-red-950/50 rounded-md whitespace-nowrap cursor-pointer"
                         >
                           <Archive className="w-3.5 h-3.5" />
                           Clôturer l’année
@@ -473,7 +473,7 @@ export function AcademicYearsPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                       <thead>
-                        <tr className="bg-slate-50/70 border-b border-slate-100 text-xs font-medium text-slate-500">
+                        <tr className="bg-slate-50/70 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 text-xs font-medium text-slate-500 dark:text-slate-400">
                           <th className="py-2.5 px-5">Ordre</th>
                           <th className="py-2.5 px-5">Période</th>
                           <th className="py-2.5 px-5">Dates</th>
@@ -483,26 +483,26 @@ export function AcademicYearsPage() {
                           )}
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100 text-sm">
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
                         {year.terms.map((term) => (
-                          <tr key={term.id} className="hover:bg-slate-50/50">
-                            <td className="py-2.5 px-5 font-mono text-xs text-slate-500 tabular-nums">
+                          <tr key={term.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50">
+                            <td className="py-2.5 px-5 font-mono text-xs text-slate-500 dark:text-slate-400 tabular-nums">
                               #{term.orderIndex}
                             </td>
-                            <td className="py-2.5 px-5 font-medium text-slate-900">
+                            <td className="py-2.5 px-5 font-medium text-slate-900 dark:text-slate-100">
                               {term.name}
                             </td>
-                            <td className="py-2.5 px-5 text-xs font-mono text-slate-600 tabular-nums">
+                            <td className="py-2.5 px-5 text-xs font-mono text-slate-600 dark:text-slate-400 tabular-nums">
                               {term.startDate} → {term.endDate}
                             </td>
                             <td className="py-2.5 px-5 text-xs">
                               {term.isCurrent ? (
-                                <span className="inline-flex items-center gap-1.5 font-medium text-emerald-800">
-                                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                                <span className="inline-flex items-center gap-1.5 font-medium text-emerald-800 dark:text-emerald-300">
+                                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                                   Période en cours
                                 </span>
                               ) : (
-                                <span className="text-slate-500">Planifiée</span>
+                                <span className="text-slate-500 dark:text-slate-400">Planifiée</span>
                               )}
                             </td>
                             {canManage && year.status !== 'CLOSED' && (
@@ -512,7 +512,7 @@ export function AcademicYearsPage() {
                                     <button
                                       type="button"
                                       onClick={() => setCurrentTermMutation.mutate(term.id)}
-                                      className="px-2.5 py-1 text-xs font-medium text-indigo-700 bg-white border border-indigo-200 hover:bg-indigo-50 rounded cursor-pointer"
+                                      className="px-2.5 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300 bg-white dark:bg-slate-900 border border-indigo-200 dark:border-indigo-800/70 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 rounded cursor-pointer"
                                     >
                                       Activer période
                                     </button>
@@ -520,7 +520,7 @@ export function AcademicYearsPage() {
                                   <button
                                     type="button"
                                     onClick={() => openEditTerm(year, term)}
-                                    className="px-2 py-1 text-xs text-slate-700 border border-slate-200 rounded hover:bg-slate-50 cursor-pointer"
+                                    className="px-2 py-1 text-xs text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/80 rounded hover:bg-slate-50 dark:hover:bg-slate-800/70 cursor-pointer"
                                   >
                                     Modifier
                                   </button>
@@ -530,7 +530,7 @@ export function AcademicYearsPage() {
                                     onClick={() =>
                                       setConfirmAction({ type: 'delete-term', year, term })
                                     }
-                                    className="p-1 text-red-600 hover:bg-red-50 rounded cursor-pointer"
+                                    className="p-1 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50 rounded cursor-pointer"
                                   >
                                     <Trash2 className="w-3.5 h-3.5" />
                                   </button>
@@ -543,7 +543,7 @@ export function AcademicYearsPage() {
                     </table>
                   </div>
                 ) : (
-                  <p className="px-5 py-4 text-xs text-slate-500">
+                  <p className="px-5 py-4 text-xs text-slate-500 dark:text-slate-400">
                     Aucune période configurée pour cette année scolaire.
                   </p>
                 )}
@@ -554,16 +554,16 @@ export function AcademicYearsPage() {
       </div>
 
       {yearModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
-          <div className="w-full max-w-md bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden">
-            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
-              <h2 className="text-base font-semibold text-slate-900">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 dark:bg-slate-950/75 p-4">
+          <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg shadow-lg overflow-hidden">
+            <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700/80 flex items-center justify-between">
+              <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
                 {editingYear ? 'Modifier l’année scolaire' : 'Nouvelle année scolaire'}
               </h2>
               <button
                 type="button"
                 onClick={() => setYearModalOpen(false)}
-                className="text-slate-400 hover:text-slate-700 p-1 rounded cursor-pointer"
+                className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1 rounded cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -573,16 +573,16 @@ export function AcademicYearsPage() {
               className="p-6 space-y-4"
             >
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Libellé de l’année (ex: 2026-2027)
                 </label>
                 <input
                   type="text"
                   {...yearForm.register('name')}
-                  className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
                 {yearForm.formState.errors.name && (
-                  <p className="mt-1 text-xs text-red-700">
+                  <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                     {yearForm.formState.errors.name.message}
                   </p>
                 )}
@@ -590,40 +590,40 @@ export function AcademicYearsPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Date de rentrée
                   </label>
                   <input
                     type="date"
                     {...yearForm.register('startDate')}
-                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Date de fin
                   </label>
                   <input
                     type="date"
                     {...yearForm.register('endDate')}
-                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>
               </div>
               {yearForm.formState.errors.endDate && (
-                <p className="text-xs text-red-700">
+                <p className="text-xs text-red-700 dark:text-red-400">
                   {yearForm.formState.errors.endDate.message}
                 </p>
               )}
 
               {!editingYear && (
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Génération automatique des périodes
                   </label>
                   <select
                     {...yearForm.register('autoGeneratePeriods')}
-                    className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="TRIMESTER">3 Trimestres automatiques</option>
                     <option value="SEMESTER">2 Semestres automatiques</option>
@@ -632,11 +632,11 @@ export function AcademicYearsPage() {
                 </div>
               )}
 
-              <div className="pt-4 border-t border-slate-100 flex justify-end gap-3">
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setYearModalOpen(false)}
-                  className="px-4 py-2 text-sm font-medium text-slate-700 border border-slate-200 rounded-md hover:bg-slate-50 cursor-pointer"
+                  className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/80 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800/70 cursor-pointer"
                 >
                   Annuler
                 </button>
@@ -654,10 +654,10 @@ export function AcademicYearsPage() {
       )}
 
       {termModalYear && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
-          <div className="w-full max-w-md bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden">
-            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
-              <h2 className="text-base font-semibold text-slate-900">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 dark:bg-slate-950/75 p-4">
+          <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg shadow-lg overflow-hidden">
+            <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700/80 flex items-center justify-between">
+              <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
                 {editingTerm
                   ? `Modifier ${editingTerm.name}`
                   : `Ajouter une période (${termModalYear.name})`}
@@ -668,7 +668,7 @@ export function AcademicYearsPage() {
                   setTermModalYear(null);
                   setEditingTerm(null);
                 }}
-                className="text-slate-400 hover:text-slate-700 p-1 rounded cursor-pointer"
+                className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1 rounded cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -680,36 +680,36 @@ export function AcademicYearsPage() {
             >
               <div className="grid grid-cols-3 gap-3">
                 <div className="col-span-2">
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Nom de la période
                   </label>
                   <input
                     type="text"
                     {...termForm.register('name')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Ordre
                   </label>
                   <input
                     type="number"
                     disabled={Boolean(editingTerm)}
                     {...termForm.register('orderIndex', { valueAsNumber: true })}
-                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md disabled:bg-slate-100"
+                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md disabled:bg-slate-100 dark:disabled:bg-slate-800/70"
                   />
                 </div>
               </div>
 
               {!editingTerm && (
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Type de période
                   </label>
                   <select
                     {...termForm.register('termType')}
-                    className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
                   >
                     <option value="TRIMESTER">Trimestre</option>
                     <option value="SEMESTER">Semestre</option>
@@ -719,40 +719,40 @@ export function AcademicYearsPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Début
                   </label>
                   <input
                     type="date"
                     {...termForm.register('startDate')}
-                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Fin
                   </label>
                   <input
                     type="date"
                     {...termForm.register('endDate')}
-                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                 </div>
               </div>
               {termForm.formState.errors.endDate && (
-                <p className="text-xs text-red-700">
+                <p className="text-xs text-red-700 dark:text-red-400">
                   {termForm.formState.errors.endDate.message}
                 </p>
               )}
 
-              <div className="pt-4 border-t border-slate-100 flex justify-end gap-3">
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => {
                     setTermModalYear(null);
                     setEditingTerm(null);
                   }}
-                  className="px-4 py-2 text-sm font-medium text-slate-700 border border-slate-200 rounded-md hover:bg-slate-50 cursor-pointer"
+                  className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/80 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800/70 cursor-pointer"
                 >
                   Annuler
                 </button>

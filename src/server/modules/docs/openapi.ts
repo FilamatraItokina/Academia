@@ -168,6 +168,51 @@ export const openApiSpec = {
       patch: { summary: 'Modifier le coefficient, le volume horaire ou l’enseignant d’une matière dans une classe', tags: ['Matières & Programmes'] },
       delete: { summary: 'Retirer une matière du programme d’une classe', tags: ['Matières & Programmes'] },
     },
+    '/grades/assessments': {
+      get: { summary: 'Lister les évaluations filtrées par classe, période et rôle enseignant', tags: ['Évaluations & Notes'] },
+      post: { summary: 'Créer une évaluation (devoir, interrogation, examen) pour une matière et période', tags: ['Évaluations & Notes'] },
+    },
+    '/grades/assessments/{id}': {
+      patch: { summary: 'Modifier ou publier/masquer une évaluation', tags: ['Évaluations & Notes'] },
+      delete: { summary: 'Supprimer une évaluation et ses notes associées', tags: ['Évaluations & Notes'] },
+    },
+    '/grades/assessments/{id}/sheet': {
+      get: { summary: 'Récupérer la feuille de saisie des notes d’une évaluation', tags: ['Évaluations & Notes'] },
+    },
+    '/grades/assessments/{id}/scores': {
+      put: { summary: 'Enregistrer en masse les notes et absences d’une évaluation', tags: ['Évaluations & Notes'] },
+    },
+    '/grades/class-summary': {
+      get: { summary: 'Synthèse des moyennes par matière, moyenne générale pondérée et classement', tags: ['Évaluations & Notes'] },
+    },
+    '/grades/my-summary': {
+      get: { summary: 'Relevé personnel des notes publiées pour un élève ou un parent', tags: ['Évaluations & Notes'] },
+    },
+    '/report-cards/class': {
+      get: { summary: 'Lister les bulletins d’une classe pour une période donnée', tags: ['Bulletins PDF'] },
+    },
+    '/report-cards/generate': {
+      post: { summary: 'Générer ou actualiser les bulletins brouillons d’une classe depuis les notes et absences', tags: ['Bulletins PDF'] },
+    },
+    '/report-cards/class/validate-all': {
+      post: { summary: 'Valider en masse les bulletins brouillons d’une classe', tags: ['Bulletins PDF'] },
+    },
+    '/report-cards/my-cards': {
+      get: { summary: 'Lister les bulletins officiels validés d’un élève ou de ses enfants', tags: ['Bulletins PDF'] },
+    },
+    '/report-cards/{id}': {
+      get: { summary: 'Consulter le détail complet d’un bulletin et ses appréciations', tags: ['Bulletins PDF'] },
+      patch: { summary: 'Mettre à jour les appréciations des enseignants, la mention ou la remarque du conseil', tags: ['Bulletins PDF'] },
+    },
+    '/report-cards/{id}/validate': {
+      post: { summary: 'Valider définitivement et verrouiller un bulletin', tags: ['Bulletins PDF'] },
+    },
+    '/report-cards/{id}/reopen': {
+      post: { summary: 'Rouvrir un bulletin validé en mode brouillon', tags: ['Bulletins PDF'] },
+    },
+    '/report-cards/{id}/pdf': {
+      get: { summary: 'Générer et télécharger le bulletin scolaire officiel au format PDF', tags: ['Bulletins PDF'] },
+    },
   },
 };
 

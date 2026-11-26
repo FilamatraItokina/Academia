@@ -409,5 +409,228 @@ export interface ClassCurriculumResponse {
   summary: CurriculumSummary;
 }
 
+export type AssessmentType = 'QUIZ' | 'TEST' | 'EXAM' | 'ORAL' | 'PRACTICAL';
+
+export interface AssessmentItem {
+  id: number;
+  classSubjectId: number;
+  classId: number;
+  className: string;
+  subjectId: number;
+  subjectCode: string;
+  subjectName: string;
+  subjectCoefficient: number;
+  teacherId: number | null;
+  teacherFullName: string | null;
+  termId: number;
+  termName: string;
+  academicYearId: number;
+  academicYearName: string;
+  academicYearStatus: AcademicYearStatus;
+  title: string;
+  assessmentType: AssessmentType;
+  assessmentDate: string;
+  maxScore: number;
+  weight: number;
+  description: string;
+  isPublished: boolean;
+  gradedCount: number;
+  absentCount: number;
+  enrolledCount: number;
+  averageOn20: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface GradeSheetRow {
+  studentId: number;
+  matricule: string;
+  firstName: string;
+  lastName: string;
+  gradeId: number | null;
+  score: number | null;
+  isAbsent: boolean;
+  comment: string;
+  normalizedOn20: number | null;
+  updatedAt: string | null;
+}
+
+export interface AssessmentSheetResponse {
+  assessment: AssessmentItem;
+  rows: GradeSheetRow[];
+  stats: {
+    enrolledCount: number;
+    gradedCount: number;
+    absentCount: number;
+    averageRaw: number | null;
+    averageOn20: number | null;
+    minScore: number | null;
+    maxScore: number | null;
+  };
+}
+
+export interface ClassTermSummaryResponse {
+  classInfo: {
+    id: number;
+    name: string;
+    levelName: string;
+    academicYearName: string;
+  };
+  termInfo: {
+    id: number;
+    name: string;
+  };
+  subjects: Array<{
+    classSubjectId: number;
+    subjectId: number;
+    subjectCode: string;
+    subjectName: string;
+    coefficient: number;
+    teacherFullName: string | null;
+    classAverageOn20: number | null;
+  }>;
+  students: Array<{
+    studentId: number;
+    matricule: string;
+    firstName: string;
+    lastName: string;
+    subjectAverages: Array<{
+      classSubjectId: number;
+      subjectId: number;
+      subjectCode: string;
+      subjectName: string;
+      coefficient: number;
+      teacherFullName: string | null;
+      assessmentCount: number;
+      averageOn20: number | null;
+    }>;
+    generalAverageOn20: number | null;
+    rank: number | null;
+  }>;
+  stats: {
+    studentCount: number;
+    evaluatedStudentsCount: number;
+    classGeneralAverage: number | null;
+    highestAverage: number | null;
+    lowestAverage: number | null;
+  };
+}
+
+export interface MyGradesSummaryResponse {
+  students: Array<{
+    id: number;
+    matricule: string;
+    firstName: string;
+    lastName: string;
+    className: string | null;
+  }>;
+  selectedStudentId: number | null;
+  terms: Array<{ id: number; name: string; isCurrent: boolean }>;
+  selectedTermId: number | null;
+  generalAverageOn20: number | null;
+  subjects: Array<{
+    classSubjectId: number;
+    subjectCode: string;
+    subjectName: string;
+    coefficient: number;
+    teacherFullName: string | null;
+    averageOn20: number | null;
+    grades: Array<{
+      assessmentId: number;
+      title: string;
+      assessmentType: AssessmentType;
+      assessmentDate: string;
+      maxScore: number;
+      weight: number;
+      score: number | null;
+      isAbsent: boolean;
+      normalizedOn20: number | null;
+      comment: string;
+    }>;
+  }>;
+}
+
+export type ReportCardStatus = 'DRAFT' | 'VALIDATED';
+
+export interface ReportCardSubjectLine {
+  id: number;
+  classSubjectId: number;
+  subjectCode: string;
+  subjectName: string;
+  teacherFullName: string | null;
+  coefficient: number;
+  subjectAverage: number | null;
+  classSubjectAverage: number | null;
+  teacherRemark: string;
+}
+
+export interface ReportCardItem {
+  id: number;
+  studentId: number;
+  studentMatricule: string;
+  studentFirstName: string;
+  studentLastName: string;
+  studentDateOfBirth: string;
+  classId: number;
+  className: string;
+  levelName: string;
+  termId: number;
+  termName: string;
+  academicYearId: number;
+  academicYearName: string;
+  academicYearStatus: AcademicYearStatus;
+  generalAverage: number | null;
+  classAverage: number | null;
+  rank: number | null;
+  totalStudents: number;
+  absencesCount: number;
+  latesCount: number;
+  honorMention: string;
+  councilRemark: string;
+  status: ReportCardStatus;
+  validatedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ReportCardDetail extends ReportCardItem {
+  subjects: ReportCardSubjectLine[];
+}
+
+export interface ClassReportCardsResponse {
+  classInfo: {
+    id: number;
+    name: string;
+    levelName: string;
+    academicYearName: string;
+    academicYearStatus: AcademicYearStatus;
+  };
+  termInfo: {
+    id: number;
+    name: string;
+    startDate: string;
+    endDate: string;
+  };
+  items: ReportCardItem[];
+  stats: {
+    totalCards: number;
+    validatedCount: number;
+    draftCount: number;
+    classAverage: number | null;
+  };
+}
+
+export interface MyReportCardsResponse {
+  students: Array<{
+    id: number;
+    matricule: string;
+    firstName: string;
+    lastName: string;
+  }>;
+  items: ReportCardItem[];
+}
+
+
+
 
 

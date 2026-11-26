@@ -208,15 +208,15 @@ export function UsersPage() {
       <div className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
               Annuaire & Comptes utilisateurs
             </h1>
-            <p className="mt-1 text-sm text-slate-600">
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
               Gérez les accès par rôle, pré-enregistrez le personnel et contrôlez l’activation des comptes.
             </p>
           </div>
           {usersQuery.data && (
-            <p className="text-xs font-mono text-slate-500 tabular-nums shrink-0">
+            <p className="text-xs font-mono text-slate-500 dark:text-slate-400 tabular-nums shrink-0">
               {usersQuery.data.pagination.total} compte(s) au total
             </p>
           )}
@@ -226,8 +226,8 @@ export function UsersPage() {
           <div
             className={`px-4 py-3 rounded-lg border text-sm flex items-center justify-between gap-4 ${
               feedback.type === 'success'
-                ? 'bg-emerald-50 border-emerald-200 text-emerald-900'
-                : 'bg-red-50 border-red-200 text-red-900'
+                ? 'bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 dark:border-emerald-800/70 text-emerald-900 dark:text-emerald-200'
+                : 'bg-red-50 dark:bg-red-950/50 border-red-200 dark:border-red-800/70 text-red-900 dark:text-red-200'
             }`}
           >
             <span>{feedback.text}</span>
@@ -241,7 +241,7 @@ export function UsersPage() {
           </div>
         )}
 
-        <div className="bg-white border border-slate-200 rounded-lg p-4 flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg p-4 flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
           <div className="relative flex-1 min-w-0">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
@@ -252,7 +252,7 @@ export function UsersPage() {
                 setPage(1);
               }}
               placeholder="Rechercher par nom, prénom ou adresse e-mail..."
-              className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+              className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white dark:focus:bg-slate-900"
             />
           </div>
 
@@ -264,7 +264,7 @@ export function UsersPage() {
                 setRoleFilter(e.target.value);
                 setPage(1);
               }}
-              className="px-3 py-2 text-sm bg-white border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               <option value="">Tous les rôles</option>
               {rolesQuery.data?.items.map((role) => (
@@ -274,7 +274,7 @@ export function UsersPage() {
               ))}
             </select>
 
-            <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-md">
+            <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-md">
               {(
                 [
                   { id: 'all', label: 'Tous' },
@@ -291,8 +291,8 @@ export function UsersPage() {
                   }}
                   className={`px-3 py-1 text-xs font-medium rounded transition-colors whitespace-nowrap cursor-pointer ${
                     statusFilter === tab.id
-                      ? 'bg-white text-slate-900 shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-xs'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
                   }`}
                 >
                   {tab.label}
@@ -330,11 +330,11 @@ export function UsersPage() {
             }
           />
         ) : (
-          <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-slate-200 bg-slate-50/70 text-xs font-medium text-slate-600">
+                  <tr className="border-b border-slate-200 dark:border-slate-700/80 bg-slate-50/70 dark:bg-slate-800/50 text-xs font-medium text-slate-600 dark:text-slate-400">
                     <th className="py-3 px-4">Utilisateur</th>
                     <th className="py-3 px-4">Rôles attribués</th>
                     <th className="py-3 px-4">Statut</th>
@@ -342,19 +342,19 @@ export function UsersPage() {
                     {canWrite && <th className="py-3 px-4 text-right">Actions</th>}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 text-sm">
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
                   {usersQuery.data?.items.map((user) => (
-                    <tr key={user.id} className="hover:bg-slate-50/60 transition-colors">
+                    <tr key={user.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/50 transition-colors">
                       <td className="py-3 px-4">
-                        <div className="font-medium text-slate-900">
+                        <div className="font-medium text-slate-900 dark:text-slate-100">
                           {user.firstName} {user.lastName}
                         </div>
-                        <div className="text-xs text-slate-500 font-mono">
+                        <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">
                           {user.email}
                           {user.phone ? ` · ${user.phone}` : ''}
                         </div>
                       </td>
-                      <td className="py-3 px-4 text-xs text-slate-700">
+                      <td className="py-3 px-4 text-xs text-slate-700 dark:text-slate-300">
                         {user.roles.length > 0
                           ? user.roles.map((r) => r.name).join(' · ')
                           : 'Aucun rôle attribué'}
@@ -362,7 +362,7 @@ export function UsersPage() {
                       <td className="py-3 px-4">
                         <StatusIndicator active={user.isActive} />
                       </td>
-                      <td className="py-3 px-4 text-xs font-mono text-slate-500 tabular-nums whitespace-nowrap">
+                      <td className="py-3 px-4 text-xs font-mono text-slate-500 dark:text-slate-400 tabular-nums whitespace-nowrap">
                         {user.lastLoginAt
                           ? new Date(user.lastLoginAt).toLocaleString('fr-FR', {
                               dateStyle: 'short',
@@ -376,7 +376,7 @@ export function UsersPage() {
                             <button
                               type="button"
                               onClick={() => openEditModal(user)}
-                              className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded cursor-pointer"
+                              className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded cursor-pointer"
                             >
                               <Edit3 className="w-3.5 h-3.5" />
                               Modifier
@@ -387,8 +387,8 @@ export function UsersPage() {
                                 onClick={() => setToggleTarget(user)}
                                 className={`inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium border rounded cursor-pointer ${
                                   user.isActive
-                                    ? 'text-red-700 border-red-200 bg-white hover:bg-red-50'
-                                    : 'text-emerald-700 border-emerald-200 bg-white hover:bg-emerald-50'
+                                    ? 'text-red-700 dark:text-red-400 border-red-200 dark:border-red-800/70 bg-white dark:bg-slate-900 hover:bg-red-50 dark:hover:bg-red-950/50'
+                                    : 'text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800/70 bg-white dark:bg-slate-900 hover:bg-emerald-50 dark:hover:bg-emerald-950/50'
                                 }`}
                               >
                                 {user.isActive ? (
@@ -414,7 +414,7 @@ export function UsersPage() {
             </div>
 
             {usersQuery.data && usersQuery.data.pagination.totalPages > 1 && (
-              <div className="px-4 py-3 border-t border-slate-200 bg-slate-50/50 flex items-center justify-between text-xs text-slate-600">
+              <div className="px-4 py-3 border-t border-slate-200 dark:border-slate-700/80 bg-slate-50/50 dark:bg-slate-800/40 flex items-center justify-between text-xs text-slate-600 dark:text-slate-400">
                 <span className="font-mono tabular-nums">
                   Page {usersQuery.data.pagination.page} / {usersQuery.data.pagination.totalPages}
                 </span>
@@ -423,7 +423,7 @@ export function UsersPage() {
                     type="button"
                     disabled={page <= 1}
                     onClick={() => setPage((p) => Math.max(1, p - 1))}
-                    className="px-3 py-1.5 bg-white border border-slate-200 rounded hover:bg-slate-50 disabled:opacity-50 cursor-pointer"
+                    className="px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded hover:bg-slate-50 dark:hover:bg-slate-800/70 disabled:opacity-50 cursor-pointer"
                   >
                     Précédent
                   </button>
@@ -431,7 +431,7 @@ export function UsersPage() {
                     type="button"
                     disabled={page >= usersQuery.data.pagination.totalPages}
                     onClick={() => setPage((p) => p + 1)}
-                    className="px-3 py-1.5 bg-white border border-slate-200 rounded hover:bg-slate-50 disabled:opacity-50 cursor-pointer"
+                    className="px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded hover:bg-slate-50 dark:hover:bg-slate-800/70 disabled:opacity-50 cursor-pointer"
                   >
                     Suivant
                   </button>
@@ -443,21 +443,21 @@ export function UsersPage() {
       </div>
 
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 dark:bg-slate-950/75 p-4">
           <div
             role="dialog"
             aria-modal="true"
-            className="w-full max-w-lg bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden"
+            className="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg shadow-lg overflow-hidden"
           >
-            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
-              <h2 className="text-base font-semibold text-slate-900">
+            <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700/80 flex items-center justify-between">
+              <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
                 {editingUser ? 'Modifier le compte utilisateur' : 'Créer un compte utilisateur'}
               </h2>
               <button
                 type="button"
                 onClick={() => setModalOpen(false)}
                 aria-label="Fermer"
-                className="text-slate-400 hover:text-slate-700 p-1 rounded cursor-pointer"
+                className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1 rounded cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -468,17 +468,17 @@ export function UsersPage() {
               className="p-6 space-y-4 max-h-[80vh] overflow-y-auto"
             >
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Adresse e-mail professionnelle ou scolaire
                 </label>
                 <input
                   type="email"
                   disabled={Boolean(editingUser)}
                   {...form.register('email')}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md disabled:bg-slate-100 disabled:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md disabled:bg-slate-100 dark:disabled:bg-slate-800/70 disabled:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
                 {form.formState.errors.email && (
-                  <p className="mt-1 text-xs text-red-700">
+                  <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                     {form.formState.errors.email.message}
                   </p>
                 )}
@@ -486,32 +486,32 @@ export function UsersPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Prénom
                   </label>
                   <input
                     type="text"
                     {...form.register('firstName')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                   {form.formState.errors.firstName && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {form.formState.errors.firstName.message}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Nom
                   </label>
                   <input
                     type="text"
                     {...form.register('lastName')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                   {form.formState.errors.lastName && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {form.formState.errors.lastName.message}
                     </p>
                   )}
@@ -519,19 +519,19 @@ export function UsersPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Téléphone (optionnel)
                 </label>
                 <input
                   type="text"
                   {...form.register('phone')}
                   placeholder="+33 6 00 00 00 00"
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-2">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Rôles attribués
                 </label>
                 <div className="grid grid-cols-2 gap-2">
@@ -542,15 +542,15 @@ export function UsersPage() {
                         key={role.code}
                         className={`flex items-center gap-2.5 px-3 py-2 border rounded-md text-xs cursor-pointer transition-colors ${
                           checked
-                            ? 'border-indigo-600 bg-indigo-50/50 text-slate-900 font-medium'
-                            : 'border-slate-200 text-slate-700 hover:bg-slate-50'
+                            ? 'border-indigo-600 bg-indigo-50/50 dark:bg-indigo-950/40 text-slate-900 dark:text-slate-100 font-medium'
+                            : 'border-slate-200 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/70'
                         }`}
                       >
                         <input
                           type="checkbox"
                           checked={checked}
                           onChange={() => toggleRoleInForm(role.code)}
-                          className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                          className="rounded border-slate-300 dark:border-slate-700 text-indigo-600 dark:text-indigo-400 focus:ring-indigo-500"
                         />
                         <span className="truncate">{role.name}</span>
                       </label>
@@ -558,26 +558,26 @@ export function UsersPage() {
                   })}
                 </div>
                 {form.formState.errors.roleCodes && (
-                  <p className="mt-1 text-xs text-red-700">
+                  <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                     {form.formState.errors.roleCodes.message}
                   </p>
                 )}
               </div>
 
-              <label className="flex items-center gap-2.5 pt-1 text-sm text-slate-700 cursor-pointer">
+              <label className="flex items-center gap-2.5 pt-1 text-sm text-slate-700 dark:text-slate-300 cursor-pointer">
                 <input
                   type="checkbox"
                   {...form.register('isActive')}
-                  className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                  className="rounded border-slate-300 dark:border-slate-700 text-indigo-600 dark:text-indigo-400 focus:ring-indigo-500"
                 />
                 <span>Compte actif (autorisé à se connecter)</span>
               </label>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-200 rounded-md hover:bg-slate-50 cursor-pointer"
+                  className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800/70 cursor-pointer"
                 >
                   Annuler
                 </button>

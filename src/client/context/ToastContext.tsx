@@ -66,10 +66,10 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         {toasts.map((toast) => {
           const styles =
             toast.variant === 'success'
-              ? 'bg-white border-emerald-200 text-slate-900 shadow-lg'
+              ? 'bg-white dark:bg-slate-900 border-emerald-200 dark:border-emerald-800/80 text-slate-900 dark:text-slate-100 shadow-lg'
               : toast.variant === 'error'
-                ? 'bg-white border-red-200 text-red-950 shadow-lg'
-                : 'bg-white border-slate-200 text-slate-900 shadow-lg';
+                ? 'bg-white dark:bg-slate-900 border-red-200 dark:border-red-800/80 text-red-950 dark:text-red-200 shadow-lg'
+                : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 shadow-lg';
 
           const Icon =
             toast.variant === 'success'
@@ -80,10 +80,10 @@ export function ToastProvider({ children }: { children: ReactNode }) {
 
           const iconClass =
             toast.variant === 'success'
-              ? 'text-emerald-600'
+              ? 'text-emerald-600 dark:text-emerald-400'
               : toast.variant === 'error'
-                ? 'text-red-600'
-                : 'text-indigo-600';
+                ? 'text-red-600 dark:text-red-400'
+                : 'text-indigo-600 dark:text-indigo-400';
 
           return (
             <div
@@ -97,7 +97,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                 type="button"
                 onClick={() => dismiss(toast.id)}
                 aria-label="Fermer la notification"
-                className="text-slate-400 hover:text-slate-700 p-0.5 rounded cursor-pointer"
+                className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-0.5 rounded cursor-pointer"
               >
                 <X className="w-3.5 h-3.5" />
               </button>

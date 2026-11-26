@@ -482,7 +482,7 @@ export function StudentsPage() {
             type="button"
             onClick={handleExportCsv}
             disabled={exporting}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded-md whitespace-nowrap cursor-pointer disabled:opacity-50"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded-md whitespace-nowrap cursor-pointer disabled:opacity-50"
           >
             <Download className="w-3.5 h-3.5" />
             {exporting ? 'Export...' : 'Exporter CSV'}
@@ -499,7 +499,7 @@ export function StudentsPage() {
                   setImportClassId(0);
                   setImportModalOpen(true);
                 }}
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded-md whitespace-nowrap cursor-pointer"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded-md whitespace-nowrap cursor-pointer"
               >
                 <FileSpreadsheet className="w-3.5 h-3.5" />
                 Importer CSV
@@ -519,16 +519,16 @@ export function StudentsPage() {
     >
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
             Élèves & Inscriptions annuelles
           </h1>
-          <p className="mt-1 text-sm text-slate-600">
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
             Gérez les dossiers scolaires, les matricules uniques, l’affectation en classe et l’historique d’inscription.
           </p>
         </div>
 
         {/* Barre de filtres multi-critères */}
-        <div className="bg-white border border-slate-200 rounded-lg p-4 space-y-3">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg p-4 space-y-3">
           <div className="flex flex-col lg:flex-row gap-3">
             <div className="relative flex-1 min-w-0">
               <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -540,7 +540,7 @@ export function StudentsPage() {
                   setPage(1);
                 }}
                 placeholder="Rechercher par matricule, nom, prénom ou e-mail..."
-                className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+                className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white dark:focus:bg-slate-900"
               />
             </div>
 
@@ -552,7 +552,7 @@ export function StudentsPage() {
                   setYearFilter(e.target.value);
                   setPage(1);
                 }}
-                className="px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                className="px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
               >
                 <option value="">Toutes les années</option>
                 {yearsQuery.data?.items.map((y) => (
@@ -569,7 +569,7 @@ export function StudentsPage() {
                   setLevelFilter(e.target.value);
                   setPage(1);
                 }}
-                className="px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                className="px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
               >
                 <option value="">Tous les niveaux</option>
                 {levelsQuery.data?.items.map((l) => (
@@ -586,7 +586,7 @@ export function StudentsPage() {
                   setClassFilter(e.target.value);
                   setPage(1);
                 }}
-                className="px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                className="px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
               >
                 <option value="">Toutes les classes</option>
                 {classesQuery.data?.items.map((c) => (
@@ -603,14 +603,14 @@ export function StudentsPage() {
                   setGenderFilter(e.target.value);
                   setPage(1);
                 }}
-                className="px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                className="px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
               >
                 <option value="">Tous genres</option>
                 <option value="F">Féminin</option>
                 <option value="M">Masculin</option>
               </select>
 
-              <label className="inline-flex items-center gap-2 px-2 py-2 text-xs text-slate-700 cursor-pointer">
+              <label className="inline-flex items-center gap-2 px-2 py-2 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={includeArchived}
@@ -618,7 +618,7 @@ export function StudentsPage() {
                     setIncludeArchived(e.target.checked);
                     setPage(1);
                   }}
-                  className="rounded border-slate-300 text-indigo-600"
+                  className="rounded border-slate-300 dark:border-slate-700 text-indigo-600 dark:text-indigo-400"
                 />
                 <span>Inclure archivés</span>
               </label>
@@ -651,11 +651,11 @@ export function StudentsPage() {
             }
           />
         ) : (
-          <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-slate-200 bg-slate-50/70 text-xs font-medium text-slate-600">
+                  <tr className="border-b border-slate-200 dark:border-slate-700/80 bg-slate-50/70 dark:bg-slate-800/50 text-xs font-medium text-slate-600 dark:text-slate-400">
                     <th className="py-3 px-4">Élève</th>
                     <th className="py-3 px-4">Matricule</th>
                     <th className="py-3 px-4">Naissance</th>
@@ -664,7 +664,7 @@ export function StudentsPage() {
                     <th className="py-3 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 text-sm">
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
                   {studentsQuery.data?.items.map((st) => (
                     <tr
                       key={st.id}
@@ -672,7 +672,7 @@ export function StudentsPage() {
                         setShowNewEnrollForm(false);
                         setSelectedStudentId(st.id);
                       }}
-                      className="hover:bg-slate-50/80 cursor-pointer transition-colors"
+                      className="hover:bg-slate-50/80 dark:hover:bg-slate-800/60 cursor-pointer transition-colors"
                     >
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-3">
@@ -680,38 +680,38 @@ export function StudentsPage() {
                             <img
                               src={st.photoUrl}
                               alt={`${st.firstName} ${st.lastName}`}
-                              className="w-9 h-9 rounded-full object-cover border border-slate-200 shrink-0"
+                              className="w-9 h-9 rounded-full object-cover border border-slate-200 dark:border-slate-700/80 shrink-0"
                             />
                           ) : (
-                            <div className="w-9 h-9 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-xs font-semibold shrink-0">
+                            <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs font-semibold shrink-0">
                               {st.firstName[0]}
                               {st.lastName[0]}
                             </div>
                           )}
                           <div className="min-w-0">
-                            <p className="font-semibold text-slate-900 truncate">
+                            <p className="font-semibold text-slate-900 dark:text-slate-100 truncate">
                               {st.lastName} {st.firstName}
                             </p>
-                            <p className="text-xs text-slate-500 truncate">
+                            <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
                               {st.gender === 'F' ? 'Féminin' : 'Masculin'}
                               {st.phone ? ` · ${st.phone}` : ''}
                             </p>
                           </div>
                         </div>
                       </td>
-                      <td className="py-3 px-4 font-mono text-xs font-semibold text-slate-800 whitespace-nowrap">
+                      <td className="py-3 px-4 font-mono text-xs font-semibold text-slate-800 dark:text-slate-200 whitespace-nowrap">
                         {st.matricule}
                       </td>
-                      <td className="py-3 px-4 font-mono text-xs text-slate-600 tabular-nums whitespace-nowrap">
+                      <td className="py-3 px-4 font-mono text-xs text-slate-600 dark:text-slate-400 tabular-nums whitespace-nowrap">
                         {st.dateOfBirth}
                       </td>
-                      <td className="py-3 px-4 text-xs text-slate-700 whitespace-nowrap">
+                      <td className="py-3 px-4 text-xs text-slate-700 dark:text-slate-300 whitespace-nowrap">
                         {st.currentEnrollment ? (
                           <span>
-                            <span className="font-medium text-slate-900">
+                            <span className="font-medium text-slate-900 dark:text-slate-100">
                               {st.currentEnrollment.className}
                             </span>{' '}
-                            <span className="text-slate-500">
+                            <span className="text-slate-500 dark:text-slate-400">
                               · {st.currentEnrollment.academicYearName}
                             </span>
                           </span>
@@ -721,13 +721,13 @@ export function StudentsPage() {
                       </td>
                       <td className="py-3 px-4 text-xs whitespace-nowrap">
                         {st.isArchived ? (
-                          <span className="text-slate-500 font-medium">Archivé</span>
+                          <span className="text-slate-500 dark:text-slate-400 font-medium">Archivé</span>
                         ) : st.currentEnrollment ? (
-                          <span className="text-emerald-700 font-medium">
+                          <span className="text-emerald-700 dark:text-emerald-400 font-medium">
                             {ENROLLMENT_STATUS_LABELS[st.currentEnrollment.status]}
                           </span>
                         ) : (
-                          <span className="text-amber-700 font-medium">En attente de classe</span>
+                          <span className="text-amber-700 dark:text-amber-400 font-medium">En attente de classe</span>
                         )}
                       </td>
                       <td
@@ -741,7 +741,7 @@ export function StudentsPage() {
                               setShowNewEnrollForm(false);
                               setSelectedStudentId(st.id);
                             }}
-                            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded cursor-pointer"
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded cursor-pointer"
                           >
                             <FolderOpen className="w-3.5 h-3.5" />
                             Dossier
@@ -751,7 +751,7 @@ export function StudentsPage() {
                               <button
                                 type="button"
                                 onClick={() => openEditStudent(st)}
-                                className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded cursor-pointer"
+                                className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded cursor-pointer"
                               >
                                 <Edit3 className="w-3.5 h-3.5" />
                                 Modifier
@@ -759,7 +759,7 @@ export function StudentsPage() {
                               <button
                                 type="button"
                                 onClick={() => setArchiveTarget(st)}
-                                className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded cursor-pointer"
+                                className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded cursor-pointer"
                               >
                                 <Archive className="w-3.5 h-3.5" />
                                 {st.isArchived ? 'Restaurer' : 'Archiver'}
@@ -775,7 +775,7 @@ export function StudentsPage() {
             </div>
 
             {studentsQuery.data && studentsQuery.data.pagination.totalPages > 1 && (
-              <div className="px-4 py-3 border-t border-slate-200 bg-slate-50/50 flex items-center justify-between text-xs text-slate-600">
+              <div className="px-4 py-3 border-t border-slate-200 dark:border-slate-700/80 bg-slate-50/50 dark:bg-slate-800/40 flex items-center justify-between text-xs text-slate-600 dark:text-slate-400">
                 <span className="font-mono tabular-nums">
                   {studentsQuery.data.pagination.total} élève(s) · Page{' '}
                   {studentsQuery.data.pagination.page} /{' '}
@@ -786,7 +786,7 @@ export function StudentsPage() {
                     type="button"
                     disabled={page <= 1}
                     onClick={() => setPage((p) => Math.max(1, p - 1))}
-                    className="px-3 py-1.5 bg-white border border-slate-200 rounded hover:bg-slate-50 disabled:opacity-50 cursor-pointer"
+                    className="px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded hover:bg-slate-50 dark:hover:bg-slate-800/70 disabled:opacity-50 cursor-pointer"
                   >
                     Précédent
                   </button>
@@ -794,7 +794,7 @@ export function StudentsPage() {
                     type="button"
                     disabled={page >= studentsQuery.data.pagination.totalPages}
                     onClick={() => setPage((p) => p + 1)}
-                    className="px-3 py-1.5 bg-white border border-slate-200 rounded hover:bg-slate-50 disabled:opacity-50 cursor-pointer"
+                    className="px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded hover:bg-slate-50 dark:hover:bg-slate-800/70 disabled:opacity-50 cursor-pointer"
                   >
                     Suivant
                   </button>
@@ -828,14 +828,14 @@ export function StudentsPage() {
               <button
                 type="button"
                 onClick={() => openEditStudent(dossierQuery.data!)}
-                className="px-3.5 py-2 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded-md cursor-pointer"
+                className="px-3.5 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded-md cursor-pointer"
               >
                 Modifier la fiche
               </button>
               <button
                 type="button"
                 onClick={() => setArchiveTarget(dossierQuery.data!)}
-                className="px-3.5 py-2 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded-md cursor-pointer"
+                className="px-3.5 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded-md cursor-pointer"
               >
                 {dossierQuery.data.isArchived ? 'Restaurer' : 'Archiver'}
               </button>
@@ -853,47 +853,47 @@ export function StudentsPage() {
         ) : dossierQuery.data ? (
           <div className="space-y-6">
             {/* Identité & Photo */}
-            <div className="flex items-start gap-4 pb-5 border-b border-slate-200">
+            <div className="flex items-start gap-4 pb-5 border-b border-slate-200 dark:border-slate-700/80">
               {dossierQuery.data.photoUrl ? (
                 <img
                   src={dossierQuery.data.photoUrl}
                   alt={`${dossierQuery.data.firstName} ${dossierQuery.data.lastName}`}
-                  className="w-20 h-20 rounded-lg object-cover border border-slate-200 shrink-0"
+                  className="w-20 h-20 rounded-lg object-cover border border-slate-200 dark:border-slate-700/80 shrink-0"
                 />
               ) : (
-                <div className="w-20 h-20 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center text-xl font-bold shrink-0">
+                <div className="w-20 h-20 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xl font-bold shrink-0">
                   {dossierQuery.data.firstName[0]}
                   {dossierQuery.data.lastName[0]}
                 </div>
               )}
               <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-xs flex-1 min-w-0">
                 <div>
-                  <span className="text-slate-500 block">Genre</span>
-                  <span className="font-medium text-slate-900">
+                  <span className="text-slate-500 dark:text-slate-400 block">Genre</span>
+                  <span className="font-medium text-slate-900 dark:text-slate-100">
                     {dossierQuery.data.gender === 'F' ? 'Féminin' : 'Masculin'}
                   </span>
                 </div>
                 <div>
-                  <span className="text-slate-500 block">Lieu de naissance</span>
-                  <span className="font-medium text-slate-900">
+                  <span className="text-slate-500 dark:text-slate-400 block">Lieu de naissance</span>
+                  <span className="font-medium text-slate-900 dark:text-slate-100">
                     {dossierQuery.data.placeOfBirth || '—'}
                   </span>
                 </div>
                 <div>
-                  <span className="text-slate-500 block">Nationalité</span>
-                  <span className="font-medium text-slate-900">
+                  <span className="text-slate-500 dark:text-slate-400 block">Nationalité</span>
+                  <span className="font-medium text-slate-900 dark:text-slate-100">
                     {dossierQuery.data.nationality || '—'}
                   </span>
                 </div>
                 <div>
-                  <span className="text-slate-500 block">Téléphone / E-mail</span>
-                  <span className="font-medium text-slate-900 truncate block">
+                  <span className="text-slate-500 dark:text-slate-400 block">Téléphone / E-mail</span>
+                  <span className="font-medium text-slate-900 dark:text-slate-100 truncate block">
                     {dossierQuery.data.phone || dossierQuery.data.email || '—'}
                   </span>
                 </div>
                 <div className="col-span-2">
-                  <span className="text-slate-500 block">Adresse</span>
-                  <span className="font-medium text-slate-900">
+                  <span className="text-slate-500 dark:text-slate-400 block">Adresse</span>
+                  <span className="font-medium text-slate-900 dark:text-slate-100">
                     {dossierQuery.data.address || '—'}
                   </span>
                 </div>
@@ -901,9 +901,9 @@ export function StudentsPage() {
             </div>
 
             {dossierQuery.data.medicalNotes && (
-              <div className="p-3.5 bg-amber-50/70 border border-amber-200 rounded-md">
-                <p className="text-xs font-semibold text-amber-900">Informations médicales</p>
-                <p className="mt-1 text-xs text-amber-800 leading-relaxed">
+              <div className="p-3.5 bg-amber-50/70 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/70 rounded-md">
+                <p className="text-xs font-semibold text-amber-900 dark:text-amber-200">Informations médicales</p>
+                <p className="mt-1 text-xs text-amber-800 dark:text-amber-300 leading-relaxed">
                   {dossierQuery.data.medicalNotes}
                 </p>
               </div>
@@ -912,14 +912,14 @@ export function StudentsPage() {
             {/* Inscriptions annuelles */}
             <div className="space-y-3">
               <div className="flex items-center justify-between gap-2">
-                <h3 className="text-sm font-semibold text-slate-900">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                   Historique des inscriptions annuelles
                 </h3>
                 {canWrite && !dossierQuery.data.isArchived && (
                   <button
                     type="button"
                     onClick={openEnrollmentInDrawer}
-                    className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-800 cursor-pointer"
+                    className="inline-flex items-center gap-1 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 cursor-pointer"
                   >
                     <UserPlus className="w-3.5 h-3.5" />
                     Inscrire / Réinscrire
@@ -930,16 +930,16 @@ export function StudentsPage() {
               {showNewEnrollForm && (
                 <form
                   onSubmit={enrollForm.handleSubmit((vals) => addEnrollmentMutation.mutate(vals))}
-                  className="p-4 bg-slate-50 border border-slate-200 rounded-md space-y-3"
+                  className="p-4 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-md space-y-3"
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                         Année scolaire
                       </label>
                       <select
                         {...enrollForm.register('academicYearId', { valueAsNumber: true })}
-                        className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded"
+                        className="w-full px-2.5 py-1.5 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded"
                       >
                         <option value={0}>Choisir...</option>
                         {activeYears.map((y) => (
@@ -950,12 +950,12 @@ export function StudentsPage() {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                         Classe d’affectation
                       </label>
                       <select
                         {...enrollForm.register('classId', { valueAsNumber: true })}
-                        className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded"
+                        className="w-full px-2.5 py-1.5 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded"
                       >
                         <option value={0}>Choisir...</option>
                         {classesForDrawerYear.map((c) => (
@@ -970,7 +970,7 @@ export function StudentsPage() {
                     <button
                       type="button"
                       onClick={() => setShowNewEnrollForm(false)}
-                      className="px-3 py-1.5 text-xs text-slate-600 hover:text-slate-900 cursor-pointer"
+                      className="px-3 py-1.5 text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 cursor-pointer"
                     >
                       Annuler
                     </button>
@@ -986,11 +986,11 @@ export function StudentsPage() {
               )}
 
               {dossierQuery.data.enrollments.length === 0 ? (
-                <p className="text-xs text-slate-500 py-3 border border-dashed border-slate-200 rounded text-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400 py-3 border border-dashed border-slate-200 dark:border-slate-700/80 rounded text-center">
                   Aucune inscription enregistrée pour cet élève.
                 </p>
               ) : (
-                <div className="divide-y divide-slate-100 border border-slate-200 rounded-md">
+                <div className="divide-y divide-slate-100 dark:divide-slate-800 border border-slate-200 dark:border-slate-700/80 rounded-md">
                   {dossierQuery.data.enrollments.map((enr) => {
                     const sameYearClasses =
                       classesQuery.data?.items.filter(
@@ -1003,11 +1003,11 @@ export function StudentsPage() {
                         className="p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs"
                       >
                         <div>
-                          <p className="font-semibold text-slate-900">
+                          <p className="font-semibold text-slate-900 dark:text-slate-100">
                             {enr.className} · {enr.levelName}
                             {enr.seriesName ? ` (${enr.seriesName})` : ''}
                           </p>
-                          <p className="text-slate-500 font-mono tabular-nums mt-0.5">
+                          <p className="text-slate-500 dark:text-slate-400 font-mono tabular-nums mt-0.5">
                             Année {enr.academicYearName} · Inscrit le {enr.enrollmentDate}
                           </p>
                         </div>
@@ -1026,7 +1026,7 @@ export function StudentsPage() {
                                     });
                                   }
                                 }}
-                                className="px-2 py-1 text-xs bg-white border border-slate-200 rounded"
+                                className="px-2 py-1 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded"
                               >
                                 {sameYearClasses.map((c) => (
                                   <option key={c.id} value={c.id}>
@@ -1043,7 +1043,7 @@ export function StudentsPage() {
                                     status: e.target.value as EnrollmentStatus,
                                   })
                                 }
-                                className="px-2 py-1 text-xs bg-white border border-slate-200 rounded"
+                                className="px-2 py-1 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded"
                               >
                                 <option value="ACTIVE">Inscrit</option>
                                 <option value="TRANSFERRED">Transféré</option>
@@ -1052,7 +1052,7 @@ export function StudentsPage() {
                               </select>
                             </>
                           ) : (
-                            <span className="font-medium text-slate-600">
+                            <span className="font-medium text-slate-600 dark:text-slate-400">
                               {ENROLLMENT_STATUS_LABELS[enr.status]}
                             </span>
                           )}
@@ -1067,39 +1067,39 @@ export function StudentsPage() {
             {/* Responsables légaux */}
             <div className="space-y-3">
               <div className="flex items-center justify-between gap-2">
-                <h3 className="text-sm font-semibold text-slate-900">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                   Parents & Responsables légaux
                 </h3>
                 <Link
                   to="/guardians"
-                  className="text-xs font-medium text-indigo-600 hover:text-indigo-800"
+                  className="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300"
                 >
                   Gérer dans Parents & Tuteurs
                 </Link>
               </div>
 
               {dossierQuery.data.guardians.length === 0 ? (
-                <p className="text-xs text-slate-500 py-3 border border-dashed border-slate-200 rounded text-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400 py-3 border border-dashed border-slate-200 dark:border-slate-700/80 rounded text-center">
                   Aucun responsable légal associé à cet élève.
                 </p>
               ) : (
-                <div className="divide-y divide-slate-100 border border-slate-200 rounded-md">
+                <div className="divide-y divide-slate-100 dark:divide-slate-800 border border-slate-200 dark:border-slate-700/80 rounded-md">
                   {dossierQuery.data.guardians.map((g) => (
                     <div key={g.guardianId} className="p-3 text-xs space-y-1">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="font-semibold text-slate-900">
+                        <span className="font-semibold text-slate-900 dark:text-slate-100">
                           {g.firstName} {g.lastName}
                         </span>
-                        <span className="text-slate-600">
+                        <span className="text-slate-600 dark:text-slate-400">
                           {RELATIONSHIP_LABELS[g.relationship] ?? g.relationship}
                           {g.isPrimaryContact ? ' · Contact principal' : ''}
                         </span>
                       </div>
-                      <p className="text-slate-600 font-mono tabular-nums">
+                      <p className="text-slate-600 dark:text-slate-400 font-mono tabular-nums">
                         {g.phone}
                         {g.email ? ` · ${g.email}` : ''}
                       </p>
-                      <p className="text-slate-500">
+                      <p className="text-slate-500 dark:text-slate-400">
                         {g.hasLegalCustody ? 'Autorité parentale' : 'Sans autorité parentale'} ·{' '}
                         {g.canPickup ? 'Autorisé à récupérer l’élève' : 'Sortie non autorisée'}
                       </p>
@@ -1114,10 +1114,10 @@ export function StudentsPage() {
 
       {/* Modal Création / Modification d'élève */}
       {formModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
-          <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden max-h-[90vh] flex flex-col">
-            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between shrink-0">
-              <h2 className="text-base font-semibold text-slate-900">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 dark:bg-slate-950/75 p-4">
+          <div className="w-full max-w-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg shadow-lg overflow-hidden max-h-[90vh] flex flex-col">
+            <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-700/80 flex items-center justify-between shrink-0">
+              <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
                 {editingStudent
                   ? `Modifier le dossier · ${editingStudent.matricule}`
                   : 'Inscrire un nouvel élève'}
@@ -1125,7 +1125,7 @@ export function StudentsPage() {
               <button
                 type="button"
                 onClick={() => setFormModalOpen(false)}
-                className="text-slate-400 hover:text-slate-700 p-1 rounded cursor-pointer"
+                className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1 rounded cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -1136,21 +1136,21 @@ export function StudentsPage() {
               className="p-6 space-y-5 overflow-y-auto flex-1"
             >
               {/* Photo */}
-              <div className="flex items-center gap-4 pb-4 border-b border-slate-100">
+              <div className="flex items-center gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
                 {watchFormPhoto ? (
                   <img
                     src={watchFormPhoto}
                     alt="Aperçu élève"
-                    className="w-16 h-16 rounded-lg object-cover border border-slate-200 shrink-0"
+                    className="w-16 h-16 rounded-lg object-cover border border-slate-200 dark:border-slate-700/80 shrink-0"
                   />
                 ) : (
-                  <div className="w-16 h-16 rounded-lg bg-slate-100 text-slate-400 flex items-center justify-center shrink-0">
+                  <div className="w-16 h-16 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center shrink-0">
                     <ImagePlus className="w-6 h-6" />
                   </div>
                 )}
                 <div className="space-y-1.5">
                   <div className="flex items-center gap-2">
-                    <label className="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded cursor-pointer">
+                    <label className="px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded cursor-pointer">
                       Choisir une photo
                       <input
                         type="file"
@@ -1163,14 +1163,14 @@ export function StudentsPage() {
                       <button
                         type="button"
                         onClick={() => studentForm.setValue('photoUrl', null)}
-                        className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs text-red-700 hover:bg-red-50 rounded cursor-pointer"
+                        className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs text-red-700 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/50 rounded cursor-pointer"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                         Retirer
                       </button>
                     )}
                   </div>
-                  <p className="text-[11px] text-slate-500">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
                     JPEG, PNG ou WebP · Redimensionné automatiquement pour le trombinoscope.
                   </p>
                 </div>
@@ -1178,27 +1178,27 @@ export function StudentsPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">Prénom *</label>
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Prénom *</label>
                   <input
                     type="text"
                     {...studentForm.register('firstName')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {studentForm.formState.errors.firstName && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {studentForm.formState.errors.firstName.message}
                     </p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">Nom *</label>
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Nom *</label>
                   <input
                     type="text"
                     {...studentForm.register('lastName')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {studentForm.formState.errors.lastName && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {studentForm.formState.errors.lastName.message}
                     </p>
                   )}
@@ -1207,105 +1207,105 @@ export function StudentsPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">Genre *</label>
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Genre *</label>
                   <select
                     {...studentForm.register('gender')}
-                    className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
                   >
                     <option value="F">Féminin</option>
                     <option value="M">Masculin</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Date de naissance *
                   </label>
                   <input
                     type="date"
                     {...studentForm.register('dateOfBirth')}
-                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm font-mono border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                   {studentForm.formState.errors.dateOfBirth && (
-                    <p className="mt-1 text-xs text-red-700">
+                    <p className="mt-1 text-xs text-red-700 dark:text-red-400">
                       {studentForm.formState.errors.dateOfBirth.message}
                     </p>
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Lieu de naissance
                   </label>
                   <input
                     type="text"
                     {...studentForm.register('placeOfBirth')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Nationalité
                   </label>
                   <input
                     type="text"
                     {...studentForm.register('nationality')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">Téléphone</label>
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Téléphone</label>
                   <input
                     type="tel"
                     {...studentForm.register('phone')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1">E-mail</label>
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">E-mail</label>
                   <input
                     type="email"
                     {...studentForm.register('email')}
-                    className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                    className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">Adresse</label>
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Adresse</label>
                 <input
                   type="text"
                   {...studentForm.register('address')}
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                  className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Notes médicales / Allergies
                 </label>
                 <textarea
                   rows={2}
                   {...studentForm.register('medicalNotes')}
                   placeholder="Allergies, PAI, observations particulières..."
-                  className="w-full px-3 py-2 text-sm border border-slate-200 rounded-md"
+                  className="w-full px-3 py-2 text-sm border border-slate-200 dark:border-slate-700/80 rounded-md"
                 />
               </div>
 
               {!editingStudent && (
-                <div className="p-4 bg-slate-50 border border-slate-200 rounded-md space-y-3">
-                  <p className="text-xs font-semibold text-slate-900">
+                <div className="p-4 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-md space-y-3">
+                  <p className="text-xs font-semibold text-slate-900 dark:text-slate-100">
                     Affectation immédiate en classe (optionnel)
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                         Année scolaire
                       </label>
                       <select
                         {...studentForm.register('enrollYearId', { valueAsNumber: true })}
-                        className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-md"
+                        className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md"
                       >
                         <option value={0}>Ne pas affecter maintenant</option>
                         {activeYears.map((y) => (
@@ -1316,13 +1316,13 @@ export function StudentsPage() {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                         Classe
                       </label>
                       <select
                         disabled={watchFormYearId === 0}
                         {...studentForm.register('enrollClassId', { valueAsNumber: true })}
-                        className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-md disabled:bg-slate-100"
+                        className="w-full px-3 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-md disabled:bg-slate-100 dark:disabled:bg-slate-800/70"
                       >
                         <option value={0}>Sélectionner une classe...</option>
                         {classesForFormYear.map((c) => (
@@ -1336,11 +1336,11 @@ export function StudentsPage() {
                 </div>
               )}
 
-              <div className="pt-4 border-t border-slate-100 flex justify-end gap-3">
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setFormModalOpen(false)}
-                  className="px-4 py-2 text-sm font-medium text-slate-700 border border-slate-200 rounded-md hover:bg-slate-50 cursor-pointer"
+                  className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/80 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800/70 cursor-pointer"
                 >
                   Annuler
                 </button>
@@ -1359,28 +1359,28 @@ export function StudentsPage() {
 
       {/* Modal Import CSV */}
       {importModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
-          <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-lg shadow-lg p-6 space-y-4 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 dark:bg-slate-950/75 p-4">
+          <div className="w-full max-w-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-lg shadow-lg p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-700/80 pb-3">
               <div>
-                <h2 className="text-base font-semibold text-slate-900">
+                <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">
                   Importation CSV d’élèves
                 </h2>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   Séparateur point-virgule (;) ou virgule (,). Les matricules manquants sont générés automatiquement.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setImportModalOpen(false)}
-                className="text-slate-400 hover:text-slate-700 p-1 rounded cursor-pointer"
+                className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1 rounded cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <label className="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 rounded cursor-pointer">
+              <label className="px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:bg-slate-50 dark:hover:bg-slate-800/70 rounded cursor-pointer">
                 Charger un fichier .csv
                 <input
                   type="file"
@@ -1395,7 +1395,7 @@ export function StudentsPage() {
               <button
                 type="button"
                 onClick={() => setCsvText(SAMPLE_CSV)}
-                className="text-xs font-medium text-indigo-600 hover:text-indigo-800 cursor-pointer"
+                className="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 cursor-pointer"
               >
                 Insérer un exemple CSV
               </button>
@@ -1406,12 +1406,12 @@ export function StudentsPage() {
               value={csvText}
               onChange={(e) => setCsvText(e.target.value)}
               placeholder="firstName;lastName;gender;dateOfBirth;placeOfBirth;nationality;phone;email;address"
-              className="w-full p-3 font-mono text-xs bg-slate-50 border border-slate-200 rounded-md focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full p-3 font-mono text-xs bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-md focus:bg-white dark:focus:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-slate-50 border border-slate-200 rounded-md">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 rounded-md">
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Inscrire dans l’année (optionnel)
                 </label>
                 <select
@@ -1420,7 +1420,7 @@ export function StudentsPage() {
                     setImportYearId(Number(e.target.value));
                     setImportClassId(0);
                   }}
-                  className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded"
+                  className="w-full px-2.5 py-1.5 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded"
                 >
                   <option value={0}>Aucune inscription immédiate</option>
                   {activeYears.map((y) => (
@@ -1431,14 +1431,14 @@ export function StudentsPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-700 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Classe cible
                 </label>
                 <select
                   disabled={importYearId === 0}
                   value={importClassId}
                   onChange={(e) => setImportClassId(Number(e.target.value))}
-                  className="w-full px-2.5 py-1.5 text-xs bg-white border border-slate-200 rounded disabled:bg-slate-100"
+                  className="w-full px-2.5 py-1.5 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded disabled:bg-slate-100 dark:disabled:bg-slate-800/70"
                 >
                   <option value={0}>Sélectionner une classe...</option>
                   {classesForImportYear.map((c) => (
@@ -1451,13 +1451,13 @@ export function StudentsPage() {
             </div>
 
             {importResult && (
-              <div className="p-4 border border-slate-200 rounded-md bg-slate-50 space-y-2 text-xs">
-                <p className="font-semibold text-slate-900">
+              <div className="p-4 border border-slate-200 dark:border-slate-700/80 rounded-md bg-slate-50 dark:bg-slate-800/60 space-y-2 text-xs">
+                <p className="font-semibold text-slate-900 dark:text-slate-100">
                   Résultat : {importResult.createdCount} créé(s) sur {importResult.totalRows}{' '}
                   ligne(s) · {importResult.errorCount} erreur(s)
                 </p>
                 {importResult.errors.length > 0 && (
-                  <ul className="space-y-1 text-red-700 max-h-32 overflow-y-auto">
+                  <ul className="space-y-1 text-red-700 dark:text-red-400 max-h-32 overflow-y-auto">
                     {importResult.errors.map((err, idx) => (
                       <li key={idx}>
                         Ligne {err.row} : {err.reason}
@@ -1468,11 +1468,11 @@ export function StudentsPage() {
               </div>
             )}
 
-            <div className="pt-3 border-t border-slate-100 flex justify-end gap-3">
+            <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3">
               <button
                 type="button"
                 onClick={() => setImportModalOpen(false)}
-                className="px-4 py-2 text-sm font-medium text-slate-700 border border-slate-200 rounded-md cursor-pointer"
+                className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/80 rounded-md cursor-pointer"
               >
                 Fermer
               </button>

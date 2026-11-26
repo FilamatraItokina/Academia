@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
@@ -11,8 +13,21 @@
     font-family: var(--font-sans);
     color: #0f172a;
     background-color: #f8fafc;
+    color-scheme: light;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  html.dark {
+    color: #f1f5f9;
+    background-color: #020617;
+    color-scheme: dark;
+  }
+
+  html.dark input:not([type="checkbox"]):not([type="radio"]),
+  html.dark select,
+  html.dark textarea {
+    color: #f1f5f9;
   }
 
   h1, h2, h3, h4 {
